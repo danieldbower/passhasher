@@ -1,7 +1,8 @@
 
 <% if current_user %>
   <p>Form for generating password</p> 
-  <p>Form should list and be able to add/delete places</p> 
+  <%= render "shared/list_places" %>
+  <%= link_to 'New Place', new_user_place_path(current_user) %>
 <% else %>
   <p>About Pass Hasher</p>
 <% end %>
