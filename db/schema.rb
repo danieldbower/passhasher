@@ -10,11 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101222172729) do
+ActiveRecord::Schema.define(:version => 20101222181310) do
 
   create_table "news", :force => true do |t|
     t.string   "title",      :default => "New News",                  :null => false
     t.string   "text",       :default => "Something you didn't know", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "places", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

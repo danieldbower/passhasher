@@ -1,8 +1,13 @@
 Passhasher::Application.routes.draw do
-  root :to => 'home#index'
+
+  root :to => 'users#show'
 
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
+
+  resources :users do
+    resources :places
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
