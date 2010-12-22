@@ -1,8 +1,6 @@
 class PlacesController < ApplicationController
   def index
-    @places = Place.find_all_by_user_id(current_user.id)
-
-    @places.sort!
+    @places = Place.places_for_user current_user
   end
 
   def new
