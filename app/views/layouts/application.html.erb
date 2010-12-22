@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Passhasher</title>
+  <title>Pass Hasher</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <div id="securityBlock">
+    <% if current_user %>
+      Welcome <%= current_user.name %>!
+      <%= link_to "Sign Out", signout_path %>
+    <% else %>
+      <div class="authOptions">
+        <ul>
+          <li><a href="/auth/cas" class="authOption">
+            <%= image_tag "authIcons/cas_32.png", :size => "32x32", :alt => "CAS"%></a>
+          </li>
+          <li><a href="/auth/facebook" class="authOption">
+            <%= image_tag "authIcons/facebook_32.png", :size => "32x32", :alt => "Facebook"%></a>
+          </li>
+          <li><a href="/auth/open_id" class="authOption">
+            <%= image_tag "authIcons/openid_32.png", :size => "32x32", :alt => "Open Id"%></a>
+          </li>
+          <li><a href="/auth/twitter" class="authOption">
+            <%= image_tag "authIcons/twitter_32.png", :size => "32x32", :alt => "Twitter"%></a>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  
 
 <%= yield %>
 
