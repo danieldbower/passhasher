@@ -1,8 +1,4 @@
 class PlacesController < ApplicationController
-  def index
-    @places = Place.places_for_user current_user
-  end
-
   def new
     @place = Place.new
     @place.user = current_user

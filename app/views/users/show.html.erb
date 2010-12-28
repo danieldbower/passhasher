@@ -1,8 +1,53 @@
 
 <% if current_user %>
-  <p>Form for generating password</p> 
-  <%= render "shared/list_places" %>
-  <%= link_to 'New Place', new_user_place_path(current_user) %>
-<% else %>
-  <p>About Pass Hasher</p>
+  <h1>Generate your passwords with a Hash</h1>
+  <label for="master">Master Password</label>
+  <input type="password" id="master">
+
+  <h2>Places <%= link_to '+', new_user_place_path(current_user) %> </h2>
+  <table>
+    <tr> <th>Name</th> <th>Description</th> <th></th> </tr>
+
+    <% @places.each do |place| %>
+      <tr>
+        <td class="placeName" onclick="hashit('<%= place.name %>')"><%= place.name %></td>
+        <td class="placeDesc"><%= place.description %></td>
+        <td class="placeButtons"><%= link_to 'x', user_place_path(place.user, place), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div id="hashedPassContainer">
+    <span id="hashedPassLabel">Hashed Pass:</span>
+    <span id="hashedPass">blankity</span>
+  </div>
+
 <% end %>
+
+<h1>About Pass Hasher</h1>
+<h2>Inspiration From:</h2>
+<ul>
+    <li>http://passwordmaker.org</li>
+    <li>http://angel.net/~nic/passwd.current.html</li>
+</ul>
+
+<h2>Libraries From:</h2>
+<ul>
+  <li>Paul Johnston's Javascript Hashing functions, see http://pajhome.org.uk/crypt/md5/index.html</li>
+  <li>Rik Hemsley's implementation of Natural Sort on Ruby, see http://rikkus.info/arch/sensible_sort.rb</li>
+  <li>OmniAuth and Buttons</li>
+  <li>Ruby on Rails</li>
+</ul>
+  
+<h2>Todo List:</h2>
+<ul>
+  <li>We want to run the hash multiple times as well</li>
+  <li>Add notes field to Places? or just use description field?</li>
+  <li>Add hash times to Places? or just use standard number</li>
+  <li>Choose hash type</li>
+  <li>Option needed to purge my profile</li>
+  <li>Option needed to create local version - does not support adding new places - perhaps zip up a version without "add place button"</li>
+  <li>Ajax add place</li>
+  <li>Ajax delete place</li>
+  <li>Add anonymous hasher - do not store places, but allow to hash individual.  Would be same functionality as passwordmaker.org though... (maybe the simplified ui would be useful?)</li>
+</ul>
