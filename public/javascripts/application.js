@@ -31,4 +31,5 @@ function hashit(placename, times, encodingChars){
 
 function resetHasher(val){
   $("#hashedPass").text(val)
+  $("#master").val("") 
 }
