@@ -9,7 +9,7 @@
 
     <% @places.each do |place| %>
       <tr>
-        <td class="placeName" onclick="hashit('<%= place.name %>')"><%= place.name %></td>
+        <td class="placeName" onclick="hashit('<%= place.name %>', 1000, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')"><%= place.name %></td>
         <td class="placeDesc"><%= place.description %></td>
         <td class="placeButtons"><%= link_to 'x', user_place_path(place.user, place), :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
