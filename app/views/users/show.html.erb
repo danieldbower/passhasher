@@ -5,12 +5,14 @@
 
   <h2>Places <%= link_to '+', new_user_place_path(current_user) %> </h2>
   <table>
-    <tr> <th>Name</th> <th>Description</th> <th></th> </tr>
+    <tr> <th>Name</th> <th>Notes</th> <th>Strength</th> <th>Allowed Characters</th> <th>$nbsp;</th> </tr>
 
     <% @places.each do |place| %>
       <tr>
-        <td class="placeName" onclick="hashit('<%= place.name %>', 1000, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')"><%= place.name %></td>
+        <td class="placeName" onclick="hashit('<%= place.name %>', <%= place.hash_times %>, '<%= place.encoding_chars %>')"><%= place.name %></td>
         <td class="placeDesc"><%= place.description %></td>
+        <td class="placeHashTimes"><%= place.hash_times %></td>
+        <td class="placeEncodingChars"><%= place.encoding_chars %></td>
         <td class="placeButtons"><%= link_to 'x', user_place_path(place.user, place), :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
     <% end %>
