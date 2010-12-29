@@ -3,7 +3,7 @@
 
 function hashit(placename, times, encodingChars){
   //pull the master password and the place
-  toHash = $('master').value + placename
+  toHash = $("#master").val() + placename
 
   //encode to utf8
   hashed = str2rstr_utf8(toHash)
@@ -18,8 +18,11 @@ function hashit(placename, times, encodingChars){
   encoded = rstr2any(hashed, encodingChars)
 
   //set field on page
-  $('hashedPass').firstChild.nodeValue = encoded
+  $("#hashedPass").text(encoded)
 
   //give focus to field and highlight text?
 }
 
+function resetHasher(val){
+  $("#hashedPass").text(val)
+}
