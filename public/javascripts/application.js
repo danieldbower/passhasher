@@ -3,7 +3,13 @@
 
 function hashit(placename, times, encodingChars){
   //pull the master password and the place
-  toHash = $("#master").val() + placename
+  masterPass = $("#master").val() 
+  if(masterPass == ""){
+    alert('Master Password is required')
+    return
+  }
+
+  toHash = masterPass + placename
 
   //encode to utf8
   hashed = str2rstr_utf8(toHash)
