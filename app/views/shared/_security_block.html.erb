@@ -1,0 +1,17 @@
+<div id="securityBlock" align="right">
+  <% if current_user %>
+    Welcome <%= current_user.name %>!
+    <%= link_to "Sign Out", signout_path %>
+  <% else %>
+    <div class="authOptions">
+        Login using: <a href="/auth/cas" class="authOption">
+          <%= image_tag "authIcons/cas_32.png", :size => "32x32", :alt => "CAS"%></a>
+        <a href="/auth/facebook" class="authOption">
+          <%= image_tag "authIcons/facebook_32.png", :size => "32x32", :alt => "Facebook"%></a>
+        <a href="/auth/open_id" class="authOption">
+          <%= image_tag "authIcons/openid_32.png", :size => "32x32", :alt => "Open Id"%></a>
+        <a href="/auth/twitter" class="authOption">
+          <%= image_tag "authIcons/twitter_32.png", :size => "32x32", :alt => "Twitter"%></a>
+    </div>
+  <% end %>
+</div>
