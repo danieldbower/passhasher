@@ -3,7 +3,8 @@
 <head>
   <title>Pass Hasher</title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag "jshash-2.2/md5.js", :defaults %>
+  <!-- jshash-2.2/md5.js for md5 instead of sha 256-->
+  <%= javascript_include_tag "jshash-2.2/sha256.js", :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>

@@ -10,7 +10,8 @@ function hashit(placename, times, encodingChars){
 
   //hash the specified number of times
   for (i=0; i<times; i++) {
-    hashed = rstr_md5(hashed)
+    hashed = rstr_sha256(hashed)
+    //hashed = rstr_md5(hashed)
   }
 
   //encode to hex
