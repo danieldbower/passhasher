@@ -7,16 +7,34 @@
   <%= javascript_include_tag :defaults, "jshash-2.2/sha256.js" %>
   <%= csrf_meta_tag %>
 </head>
+
 <body>
+  <span id="mainLogo">Pass Hasher</span>
   <%= render "shared/security_block" %>
+  <%= render "shared/notices" %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div id="tabs">
+	<ul>
+      <li><a href="#app">Get Started</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features and Todo</a></li>
+	</ul>
 
-  <%= yield %>
+	<div id="app">
+      <%= yield %>
+    </div>
 
-  <%= render "shared/about" %>
-  <%= render "shared/todo" %>
+	<div id="about">
+      <%= render "shared/about" %>
+    </div>
 
+	<div id="features">
+      <%= render "shared/todo" %>
+    </div>
+  </div>
+
+  <div id="footer">
+    <p>Brought to you by <a href="http://bowerstudios.com">BowerStudios.com</a><p>
+  </div>
 </body>
 </html>

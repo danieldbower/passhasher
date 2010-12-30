@@ -3,25 +3,36 @@
   <label for="master">Master Password</label>
   <input type="password" id="master" title="Enter your Master Password here, and then click on the name of a place below.">
 
-  <h2>Places <%= link_to image_tag("add.png", :alt => "add place", :title => "add place"), new_user_place_path(current_user), :class => "smallLinkButton" %> </h2>
+  <h2>Places <%= link_to ' ', new_user_place_path(current_user), :title => "add place", :class => "ui-icon ui-icon-plusthick" %> </h2>
   <table>
-    <tr> <th>Name</th> <th>Notes</th> <th class="placeHashTimes">Strength</th> <th class="placeEncodingChars">Allowed Characters</th> <th>&nbsp;</th> </tr>
-
-    <% @places.each do |place| %>
-      <tr>
-        <td class="placeName" onclick="hashit('<%= place.name %>', <%= place.hash_times %>, '<%= place.encoding_chars %>')"><%= place.name %></td>
-        <td class="placeDesc"><%= place.description %></td>
-        <td class="placeHashTimes"><%= place.hash_times %></td>
-        <td class="placeEncodingChars"><%= place.encoding_chars %></td>
-        <td class="placeButtons"><%= link_to image_tag("delete.png", :alt => "delete place", :title => "delete place"), user_place_path(place.user, place), :class => "smallLinkButton", :confirm => 'Are you sure?', :method => :delete %></td>
+    <thead>
+      <tr> 
+        <th class="placeName">Name</th> 
+        <th class="placeDesc">Notes</th> 
+        <th class="placeHashTimes advanced">Strength</th> 
+        <th class="placeEncodingChars advanced">Allowed Characters</th> 
+        <th class="placeButtons">
+          <%= link_to ' ', '#', :title => "hide advanced", :onclick => "hideAdvanced()", :class => "advanced ui-icon ui-icon-carat-1-w" %>
+          <%= link_to ' ', '#', :title => "show advanced", :onclick => "showAdvanced()", :class => "expandAdvanced ui-icon ui-icon-carat-1-e" %></th> 
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @places.each do |place| %>
+        <tr>
+          <td class="placeName" onclick="hashit('<%= place.name %>', <%= place.hash_times %>, '<%= place.encoding_chars %>')"><%= place.name %></td>
+          <td class="placeDesc"><%= place.description %></td>
+          <td class="placeHashTimes advanced"><%= place.hash_times %></td>
+          <td class="placeEncodingChars advanced"><%= place.encoding_chars %></td>
+          <td class="placeButtons"><%= link_to ' ', user_place_path(place.user, place), :title => "delete place", :class => "ui-icon ui-icon-close", :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 
   <div id="hashedPassContainer">
     <span id="hashedPassLabel">Hashed Pass:</span>
     <span id="hashedPass">blankity</span>
-    <%= image_tag("reset.png", :alt => "reset", :onclick => "resetHasher('blankity')", :title => "reset", :class => "smallButton")  %>
+    <%= link_to ' ', '#', :title => "reset", :onclick => "resetHasher('blankity')", :class => "ui-icon ui-icon-arrowreturnthick-1-n" %>
   </div>
 
 <% end %>

@@ -1,6 +1,20 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+//Actions to perform immediately and on document ready
+  $(function() {
+    $("#tabs").tabs()
+  })
+
+  $(document).ready(function() {
+    hideAdvanced()
+  });
+
+
+//functions available to the application
+
+
+
 function hashit(placename, times, encodingChars){
   //pull the master password and the place
   masterPass = $("#master").val() 
@@ -32,4 +46,14 @@ function hashit(placename, times, encodingChars){
 function resetHasher(val){
   $("#hashedPass").text(val)
   $("#master").val("") 
+}
+
+function showAdvanced(){
+  $(".advanced").show()
+  $(".expandAdvanced").hide()
+}
+
+function hideAdvanced(){
+  $(".advanced").hide()
+  $(".expandAdvanced").show()
 }
