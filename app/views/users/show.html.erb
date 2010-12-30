@@ -1,8 +1,11 @@
-<% if current_user %>
-  <h1>Generate your passwords with a Hash</h1>
-  <label for="master">Master Password</label>
-  <input type="password" id="master" title="Enter your Master Password here, and then click on the name of a place below.">
+<h1>Generate your passwords with a Hash</h1>
+<label for="master">Master Password</label>
+<input type="password" id="master" title="Enter your Master Password">
 
+<%= link_to 'simple', '#', :title => "hide advanced", :onclick => "hideAdvanced()", :class => "advanced ui-icon ui-icon-carat-1-w" %>
+<%= link_to 'advanced', '#', :title => "show advanced", :onclick => "showAdvanced()", :class => "expandAdvanced ui-icon ui-icon-carat-1-e" %></th> 
+
+<% if current_user %>
   <h2>Places <%= link_to ' ', new_user_place_path(current_user), :title => "add place", :class => "ui-icon ui-icon-plusthick" %> </h2>
   <table>
     <thead>
@@ -11,9 +14,7 @@
         <th class="placeDesc">Notes</th> 
         <th class="placeHashTimes advanced">Strength</th> 
         <th class="placeEncodingChars advanced">Allowed Characters</th> 
-        <th class="placeButtons">
-          <%= link_to ' ', '#', :title => "hide advanced", :onclick => "hideAdvanced()", :class => "advanced ui-icon ui-icon-carat-1-w" %>
-          <%= link_to ' ', '#', :title => "show advanced", :onclick => "showAdvanced()", :class => "expandAdvanced ui-icon ui-icon-carat-1-e" %></th> 
+        <th class="placeButtons">&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -29,10 +30,25 @@
     </tbody>
   </table>
 
-  <div id="hashedPassContainer">
-    <span id="hashedPassLabel">Hashed Pass:</span>
-    <span id="hashedPass">blankity</span>
-    <%= link_to ' ', '#', :title => "reset", :onclick => "resetHasher('blankity')", :class => "ui-icon ui-icon-arrowreturnthick-1-n" %>
-  </div>
+<% else %>
 
+  <p class="anonymous"><label for="placeInput">Either sign in (at the top right) to access your saved list of places, <br />or<br /> enter a place here (example: "facebook" or "http://facebook.com")</label>
+  <input type="text" id="placeInput" />
+  </p>
+
+  <p class="advanced anonymous"><label for="hashTimesInput">Number of times to hash the value - More times is arguably more secure, but takes longer</label>
+  <input type="text" id="hashTimesInput" value="1000" />
+  </p>
+
+  <p class="advanced anonymous"><label for="encodingInput">The characters that may be used in the output</label>
+  <input type="text" id="encodingInput" value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890" />
+  </p>
+
+  <input type="button" onclick="hashit($('#placeInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val())" value="hash it"/>
 <% end %>
+
+<div id="hashedPassContainer">
+  <span id="hashedPassLabel">Hashed Pass:</span>
+  <span id="hashedPass">blankity</span>
+  <%= link_to ' ', '#', :title => "reset", :onclick => "resetHasher('blankity')", :class => "ui-icon ui-icon-arrowreturnthick-1-n" %>
+</div>
