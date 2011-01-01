@@ -4,6 +4,7 @@
 //Actions to perform immediately and on document ready
   $(function() {
     $("#tabs").tabs()
+    $('#master').passwordStrength();
   })
 
   $(document).ready(function() {
