@@ -1,0 +1,20 @@
+.veryWeakPassword{ 
+  color: red
+}
+
+.weakPassword{
+  color: orange
+}
+
+.goodPassword{
+  color: yellow
+}
+
+.strongPassword{
+  color: green
+}
+
+.veryStrongPassword{
+  color: blue
+}
+
