@@ -9,31 +9,35 @@
 </head>
 
 <body>
-  <%= image_tag "passHasherLogo.png" %>
-  <%= render "shared/security_block" %>
-  <%= render "shared/notices" %>
+  <div class="header">
+    <%= image_tag "passHasherLogo.png", :class => 'logo' %>
+    <%= render "shared/notices" %>
+    <%= render "shared/security_block" %>
+  </div>
 
-  <div id="tabs">
-	<ul>
-      <li><a href="#app">Get Started</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#features">Features and Todo</a></li>
-	</ul>
+  <div class="content">
+    <div id="tabs">
+      <ul>
+        <li><a href="#app">Get Started</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features and Todo</a></li>
+      </ul>
 
-	<div id="app">
-      <%= yield %>
-    </div>
+      <div id="app">
+        <%= yield %>
+      </div>
 
-	<div id="about">
-      <%= render "shared/about" %>
-    </div>
+      <div id="about">
+        <%= render "shared/about" %>
+      </div>
 
-	<div id="features">
-      <%= render "shared/todo" %>
+      <div id="features">
+        <%= render "shared/todo" %>
+      </div>
     </div>
   </div>
 
-  <div id="footer">
+  <div class="footer">
     <p>Brought to you by <a href="http://bowerstudios.com">BowerStudios.com</a><p>
   </div>
 </body>

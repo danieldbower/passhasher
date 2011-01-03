@@ -5,12 +5,12 @@
   $(function() {
     $("#tabs").tabs()
     $('#master').passwordStrength();
+    $('.notices').fadeOut(10000);
   })
 
   $(document).ready(function() {
     hideAdvanced()
   });
-
 
 //functions available to the application
 
