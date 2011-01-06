@@ -4,14 +4,15 @@
     <%= link_to "Sign Out", signout_path %>
   <% else %>
     <div class="authOptions">
-        Login using: <a href="/auth/cas" class="authOption">
-          <%= image_tag "authIcons/cas_32.png", :size => "32x32", :alt => "CAS"%></a>
-        <a href="/auth/facebook" class="authOption">
-          <%= image_tag "authIcons/facebook_32.png", :size => "32x32", :alt => "Facebook"%></a>
+        Login using: 
         <a href="/auth/open_id" class="authOption">
           <%= image_tag "authIcons/openid_32.png", :size => "32x32", :alt => "Open Id"%></a>
         <a href="/auth/twitter" class="authOption">
           <%= image_tag "authIcons/twitter_32.png", :size => "32x32", :alt => "Twitter"%></a>
+        <a href="/auth/open_id?openid_url=gmail.com" class="authOption">
+          <%= image_tag "authIcons/google_32.png", :size => "32x32", :alt => "Gmail"%></a>
+        <a href="/auth/google_apps?domain=bowerstudios.com" class="authOption">
+          <%= image_tag "authIcons/google_32.png", :size => "32x32", :alt => "BowerStudios"%></a>
     </div>
   <% end %>
 </div>
