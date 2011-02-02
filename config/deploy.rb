@@ -19,11 +19,6 @@ role :web, "bowerstudios"                          # using ssh shortcut
 role :app, "bowerstudios"                          # using ssh shortcut
 role :db,  "bowerstudios", :primary => true 
 
-
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
-
  namespace :deploy do
    task :start do ; end
    task :stop do ; end
@@ -31,3 +26,24 @@ role :db,  "bowerstudios", :primary => true
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
    end
  end
+
+ namespace :omniauth do
+  task :setup, :except => { :no_release => true } do
+    run "mkdir -p #{shared_path}/config"
+
+    upload "config/initializers/omniauth.rb.example", "#{shared_path}/config/omniauth.rb.example"
+
+    run <<-CMD
+      test -e #{shared_path}/config/omniauth.rb || {
+        cp -f #{shared_path}/config/omniauth.rb.example #{shared_path}/config/omniauth.rb &&
+        chmod 600 #{shared_path}/config/omniauth.rb; }
+    CMD
+  end
+
+  task :symlink, :except => { :no_release => true } do
+    run "ln -nfs #{shared_path}/config/omniauth.rb #{release_path}/config/initializers/omniauth.rb"
+  end
+
+  after "deploy:setup", "omniauth:setup"
+  after "deploy:finalize_update", "omniauth:symlink"
+end

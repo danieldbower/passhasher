@@ -8,3 +8,13 @@ Maybe make something simpler and quicker to use than passwordmaker
 
 
 http://bowerstudios.com/node/687
+
+
+
+Deploy with Capistrano
+
+Required Configuration:
+Setup the database connection after you deploy by editing database.yml in shared/config
+
+Setup the authentication mechanisms.  Uses omniauth, edit omniauth.yml in shared/config.  
+Also update app/views/shared/_security_block.html.erb to reflect any additional (or less) options you choose for authentication.
