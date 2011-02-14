@@ -1,7 +1,11 @@
 class PlacesController < ApplicationController
+  respond_to :html, :json
+
   def new
     @place = Place.new
     @place.user = current_user
+    @place.hash_times = 800 + rand(200)
+    respond_with @place
   end
 
   def create
@@ -9,9 +13,19 @@ class PlacesController < ApplicationController
     @place.user = current_user
 
     if @place.save
-      redirect_to(@place.user, :notice => "Place #{@place.name} was successfully created.")
+      respond_to do |format|
+        format.html {
+          redirect_to(@place.user, :notice => "Place #{@place.name} was successfully created.")
+        }
+        format.json { render :json => @places }
+      end
     else
-      render :action => "new"
+      respond_to do |format|
+        format.html {
+          render :action => "new"
+        }
+        format.json { render false }
+      end
     end
   end
 
@@ -19,9 +33,19 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     if @place.mine? current_user
       @place.destroy
-      redirect_to(@place.user, :notice => "Place #{@place.name} was successfully deleted.")
+      respond_to do |format|
+        format.html {
+          redirect_to(@place.user, :notice => "Place #{@place.name} was successfully deleted.")
+        }
+        format.json { render :json => @places }
+      end
     else
-      render :text => "Sorry, that's not your place."
+      respond_to do |format|
+        format.html {
+          render :text => "Sorry, that's not your place."
+        }
+        format.json { render false }
+      end
     end
   end
 
