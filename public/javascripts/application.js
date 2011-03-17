@@ -16,7 +16,7 @@
 
 
 
-function hashit(placename, times, encodingChars){
+function hashit(placename, times, encodingChars, lengthLimit){
   //pull the master password and the place
   masterPass = $("#master").val() 
   if(masterPass == ""){
@@ -37,9 +37,11 @@ function hashit(placename, times, encodingChars){
 
   //encode to hex
   encoded = rstr2any(hashed, encodingChars)
+  
+  chopped = encoded.substring(0,lengthLimit)
 
   //set field on page
-  $("#hashedPass").text(encoded)
+  $("#hashedPass").text(chopped)
 
   //give focus to field and highlight text?
 }

@@ -14,6 +14,7 @@
         <th class="placeName">Name</th> 
         <th class="placeDesc">Notes</th> 
         <th class="placeHashTimes advanced">Strength</th> 
+        <th class="placePassLength advanced">Length</th> 
         <th class="placeEncodingChars advanced">Allowed Characters</th> 
         <th class="placeButtons">&nbsp;</th>
       </tr>
@@ -21,9 +22,10 @@
     <tbody>
       <% @places.each do |place| %>
         <tr>
-          <td class="placeName" onclick="hashit('<%= place.name %>', <%= place.hash_times %>, '<%= place.encoding_chars %>')"><%= place.name %></td>
+          <td class="placeName" onclick="hashit('<%= place.name %>', <%= place.hash_times %>, '<%= place.encoding_chars %>', <%= place.pass_length %>)"><%= place.name %></td>
           <td class="placeDesc"><%= place.description %></td>
           <td class="placeHashTimes advanced"><%= place.hash_times %></td>
+          <td class="placePassLength advanced"><%= place.pass_length %></td>
           <td class="placeEncodingChars advanced"><%= place.encoding_chars %></td>
           <td class="placeButtons"><%= link_to ' ', user_place_path(place.user, place), :title => "delete place", :class => "ui-icon ui-icon-close", :confirm => 'Are you sure?', :method => :delete %></td>
         </tr>
@@ -41,11 +43,15 @@
   <input type="text" id="hashTimesInput" value="1000" />
   </p>
 
+  <p class="advanced anonymous"><label for="passLengthInput">Length of the password to generate</label>
+  <input type="text" id="passLengthInput" value="16" />
+  </p>
+
   <p class="advanced anonymous"><label for="encodingInput">The characters that may be used in the output</label>
   <input type="text" id="encodingInput" value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890" />
   </p>
 
-  <input type="button" onclick="hashit($('#placeInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val())" value="hash it"/>
+  <input type="button" onclick="hashit($('#placeInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val(), $('#passLengthInput').val())" value="hash it"/>
 <% end %>
 
 <div id="hashedPassContainer">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101229182229) do
+ActiveRecord::Schema.define(:version => 20110214213643) do
 
   create_table "news", :force => true do |t|
     t.string   "title",      :default => "New News",                  :null => false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20101229182229) do
     t.datetime "updated_at"
     t.integer  "hash_times",     :default => 1000,                                                             :null => false
     t.string   "encoding_chars", :default => "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", :null => false
+    t.integer  "pass_length",    :default => 16,                                                               :null => false
   end
 
   create_table "users", :force => true do |t|
