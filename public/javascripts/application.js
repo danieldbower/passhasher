@@ -5,7 +5,7 @@
   $(function() {
     $("#tabs").tabs()
     $('#master').passwordStrength();
-    $('.notices').fadeOut(10000);
+    $('.notices').fadeOut(7000);
   })
 
   $(document).ready(function() {
@@ -20,7 +20,7 @@ function hashit(placename, times, encodingChars, lengthLimit){
   //pull the master password and the place
   masterPass = $("#master").val() 
   if(masterPass == ""){
-    alert('Master Password is required')
+    alert('Please enter your Master Password')
     return
   }
 

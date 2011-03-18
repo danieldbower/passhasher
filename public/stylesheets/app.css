@@ -1,6 +1,32 @@
-.header { height: 80px }
-.logo { float: left; }
+.ui-icon { float: left; margin-right: .3em; }
+.ui-state-highlight { margin-top: 20px; padding: 0 .7em; }
+.ui-state-error { padding:0 .7em; }
+
+.header { height: 5em; width: 100% }
 .notices { float: left; }
-.securityBlock { float: right; }
-.content { float:left; clear: both; width: 60% }
-.footer { float:left; clear: both; }
+.securityBlock { margin-top: 2em; float: right; font-family: sans-serif;}
+
+.content { float:left; clear: both; width: 100% }
+h1 { margin-left: 2em; font-family: serif; font-size: 1.5em;}
+h2 { font-size: 1em; }
+.masterPassword { margin-left: 5em; margin-bottom: 2em;}
+#masterLabel { font-weight: bold;}
+
+.places { width: 100%; margin-bottom: 2em; }
+.placeName { text-align: center; border-style: solid; border-width: 1px;}
+
+.OR { margin-left: 10em; font-size: 1em; font-weight: bold; text-transform:uppercase;}
+
+.buttons { margin-left: 5em; }
+
+#hashedPassContainer {
+  margin-top:2em;
+}
+#hashedPassLabel {
+  margin-left: 5em; font-weight:bold;
+}
+#hashedPass {
+  font-size: 1em; font-family: monospace; 
+}
+
+.footer { float:left; clear: both; font-family: sans-serif;}

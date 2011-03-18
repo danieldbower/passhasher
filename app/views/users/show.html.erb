@@ -1,21 +1,21 @@
 <h1>Generate your passwords with a Hash</h1>
-<label for="master">Master Password</label>
-<input type="password" id="master" title="Enter your Master Password">
-<label id="password-strength" for="master"></label>
 
-<%= link_to 'simple', '#', :title => "hide advanced", :onclick => "hideAdvanced()", :class => "advanced ui-icon ui-icon-carat-1-w" %>
-<%= link_to 'advanced', '#', :title => "show advanced", :onclick => "showAdvanced()", :class => "expandAdvanced ui-icon ui-icon-carat-1-e" %></th> 
+<div class="masterPassword">
+  <label id="masterLabel" for="master">Master Password</label>
+  <input type="password" id="master" title="Enter your Master Password">
+  <label id="password-strength" for="master"></label>
+</div>
 
 <% if current_user %>
   <h2>Places <%= link_to ' ', new_user_place_path(current_user), :title => "add place", :class => "ui-icon ui-icon-plusthick" %> </h2>
-  <table>
+  <table class="places">
     <thead>
       <tr> 
-        <th class="placeName">Name</th> 
-        <th class="placeDesc">Notes</th> 
-        <th class="placeHashTimes advanced">Strength</th> 
-        <th class="placePassLength advanced">Length</th> 
-        <th class="placeEncodingChars advanced">Allowed Characters</th> 
+        <th>Name</th> 
+        <th>Notes</th> 
+        <th class="advanced">Strength</th> 
+        <th class="advanced">Length</th> 
+        <th class="advanced">Allowed Characters</th> 
         <th class="placeButtons">&nbsp;</th>
       </tr>
     </thead>
@@ -33,10 +33,13 @@
     </tbody>
   </table>
 
+<div class="buttons">
 <% else %>
 
-  <p class="anonymous"><label for="placeInput">Either sign in (at the top right) to access your saved list of places, <br />or<br /> enter a place here (example: "facebook" or "http://facebook.com")</label>
-  <input type="text" id="placeInput" />
+  <p class="anonymous">Either sign in (at the top right) to access your saved list of places, 
+    <div class="OR" >or</div>
+    <label for="placeInput">Enter a place</label>
+    <input type="text" id="placeInput" value="ex: facebook or http://facebook.com" size="36"/>
   </p>
 
   <p class="advanced anonymous"><label for="hashTimesInput">Number of times to hash the value - More times is arguably more secure, but takes longer</label>
@@ -51,11 +54,18 @@
   <input type="text" id="encodingInput" value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890" />
   </p>
 
-  <input type="button" onclick="hashit($('#placeInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val(), $('#passLengthInput').val())" value="hash it"/>
+<div class="buttons">
+  <button onclick="hashit($('#placeInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val(), $('#passLengthInput').val())" >hash it</button>
 <% end %>
+
+  <button title="reset form" onclick="resetHasher('blank')" class="reset">reset</button>
+
+  <button title="hide advanced" onclick="hideAdvanced()" class="makeAdvancedToggle advanced">simple</button>
+  <button title="show advanced" onclick="showAdvanced()" class="makeAdvancedToggle expandAdvanced">advanced</button> 
+</div>
+
 
 <div id="hashedPassContainer">
   <span id="hashedPassLabel">Hashed Pass:</span>
-  <span id="hashedPass">blankity</span>
-  <%= link_to ' ', '#', :title => "reset", :onclick => "resetHasher('blankity')", :class => "ui-icon ui-icon-arrowreturnthick-1-n" %>
+  <span id="hashedPass">blank</span>
 </div>
