@@ -1,7 +1,7 @@
-PassHasher is a simple Ruby on Rails app that I am creating to generate passwords similar to passwordmaker.org. Source Code is hosted on Github at PassHasher.
+PassHasher is a simple Grails app that I am creating to generate passwords similar to passwordmaker.org. Source Code is hosted on Github at PassHasher.
 
 Goals:
-Learn Rails 3
+Learn Grails 2
 Do some design work
 Brush up on Javascript
 Maybe make something simpler and quicker to use than passwordmaker
@@ -9,12 +9,3 @@ Maybe make something simpler and quicker to use than passwordmaker
 
 http://bowerstudios.com/node/687
 
-
-
-Deploy with Capistrano
-
-Required Configuration:
-Setup the database connection after you deploy by editing database.yml in shared/config
-
-Setup the authentication mechanisms.  Uses omniauth, edit omniauth.yml in shared/config.  
-Also update app/views/shared/_security_block.html.erb to reflect any additional (or less) options you choose for authentication.
