@@ -1,144 +1,90 @@
 package com.bowerstudios.passhasher
 
-import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
+
+import com.bowerstudios.passhasher.json.*
 
 class UserController {
 
-	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	static allowedMethods = [update: "POST", delete: "POST"]
 
-	def index() {
-		redirect(action: "list", params: params)
-	}
+	UserService userService
 
+	/**
+	 * Main entrance to the app.  A user sees their profile and all their places.
+	 */
 	def passhasher() {
-		Map defaults = [defaultEncodingChars:Place.DEFAULT_ENCODING_CHARS,
-					defaultPassLength:Place.DEFAULT_PASS_LENGTH,
-					defaultHashTimes:Place.defaultHashTimes()]
-
-		User userInstance = null
-		if(params.id && params.id.isBigInteger()){
-			userInstance = User.get(params.id)
-			if (userInstance){
-				return[userInstance: userInstance] + defaults
-			}
-		}
-
-		return defaults
-	}
-
-	def list() {
-		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		[userInstanceList: User.list(params), userInstanceTotal: User.count()]
-	}
-
-	def create() {
-		[userInstance: new User(params)]
-	}
-
-	def save() {
-		def userInstance = new User(params)
-		if (!userInstance.save(flush: true)) {
-			render(view: "create", model: [userInstance: userInstance])
+		User user = userService.lookup(params.id)
+			
+		if (!user){
+			//return the user if there is one
 			return
 		}
-
-		flash.message = message(code: 'default.created.message', args: [
-			message(code: 'user.label', default: 'User'),
-			userInstance.id
-		])
-		redirect(action: "show", id: userInstance.id)
+		
+		[user: user]
+	}
+	
+	/**
+	 * Get a list of users in the system
+	 * @return
+	 */
+	def list() {
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		
+		render new PagedResponse(User.list(params), User.count()) as JSON
 	}
 
 	def show() {
-		def userInstance = User.get(params.id)
-		if (!userInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [
-				message(code: 'user.label', default: 'User'),
-				params.id
-			])
-			redirect(action: "list")
-			return
+		User user = userService.lookup(params.id)
+		
+		if(user){
+			render new SingleResponse(user) as JSON
+		}else{
+			render new FailureResponse("User not found") as JSON			
 		}
-
-		[userInstance: userInstance]
 	}
 
 	def edit() {
-		def userInstance = User.get(params.id)
-		if (!userInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [
-				message(code: 'user.label', default: 'User'),
-				params.id
-			])
+		User user = userService.lookup(params.id)
+		if (!user) {
 			redirect(action: "list")
 			return
 		}
 
-		[userInstance: userInstance]
+		[user: user]
 	}
 
 	def update() {
-		def userInstance = User.get(params.id)
-		if (!userInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [
-				message(code: 'user.label', default: 'User'),
-				params.id
-			])
+		User user = userService.lookup(params.id)
+		if (!user) {
 			redirect(action: "list")
 			return
 		}
 
-		if (params.version) {
-			def version = params.version.toLong()
-			if (userInstance.version > version) {
-				userInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-						[
-							message(code: 'user.label', default: 'User')]
-						as Object[],
-						"Another user has updated this User while you were editing")
-				render(view: "edit", model: [userInstance: userInstance])
-				return
-			}
-		}
-
-		userInstance.properties = params
-
-		if (!userInstance.save(flush: true)) {
-			render(view: "edit", model: [userInstance: userInstance])
+		user.properties = params
+		
+		if (!userService.save(user)) {
+			render(view: "edit", model: [user: user])
 			return
 		}
 
 		flash.message = message(code: 'default.updated.message', args: [
 			message(code: 'user.label', default: 'User'),
-			userInstance.id
+			user.id
 		])
-		redirect(action: "show", id: userInstance.id)
+		redirect(action: "show", id: user.id)
 	}
 
 	def delete() {
-		def userInstance = User.get(params.id)
-		if (!userInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [
-				message(code: 'user.label', default: 'User'),
-				params.id
-			])
+		User user = userService.lookup(params.id)
+		if (!user) {
 			redirect(action: "list")
 			return
 		}
 
-		try {
-			userInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [
-				message(code: 'user.label', default: 'User'),
-				params.id
-			])
+		if(userService.delete(user)){
 			redirect(action: "list")
-		}
-		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [
-				message(code: 'user.label', default: 'User'),
-				params.id
-			])
+		}else{
 			redirect(action: "show", id: params.id)
 		}
 	}
