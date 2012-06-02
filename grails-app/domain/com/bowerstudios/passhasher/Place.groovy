@@ -35,4 +35,10 @@ class Place {
 	String toString(){
 		return name
 	}
+	
+	public static jsonProperties = { Place place ->
+		['name': place.name, 'description': place.description,
+			'hashTimes':place.hashTimes, 'encodingChars':place.encodingChars,
+			'passLength':place.passLength]
+	}
 }

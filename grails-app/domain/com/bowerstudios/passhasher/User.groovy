@@ -20,4 +20,8 @@ class User {
 	String toString(){
 		return name
 	}
+	
+	public static jsonProperties = { User user ->
+		['name': user.name, 'places': user.places]
+	}
 }
