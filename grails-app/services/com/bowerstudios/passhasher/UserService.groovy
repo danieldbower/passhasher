@@ -33,20 +33,11 @@ class UserService {
 	boolean delete(User user){
 		try {
 			user.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [
-				message(code: 'user.label', default: 'User'),
-				user.id
-			])
 			return true
 		}
 		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [
-				message(code: 'user.label', default: 'User'),
-				user.id
-			])
 			return false
 		}
 	}
-	
 	
 }
