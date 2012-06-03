@@ -6,86 +6,66 @@ import com.bowerstudios.passhasher.json.*
 
 class UserController {
 
-	static allowedMethods = [update: "POST", delete: "POST"]
+	static allowedMethods = [save: "POST", delete: "POST"]
 
 	UserService userService
 
 	/**
-	 * Main entrance to the app.  A user sees their profile and all their places.
-	 */
-	def passhasher() {
-		User user = userService.lookup(params.id)
-			
-		if (!user){
-			//return the user if there is one
-			return
-		}
-		
-		[user: user]
-	}
-	
-	/**
 	 * Get a list of users in the system
-	 * @return
 	 */
+	// :TODO Only admin can run this method
 	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		
-		render new PagedResponse(User.list(params), User.count()) as JSON
+
+		render new PagedResponse(User.list(params), User.count(), "Showing list of profiles in the system") as JSON
 	}
 
+	/**
+	 * Display the attributes of a single user
+	 */
+	// :TODO if role is admin, allow to lookup by id, otherwise, must be logged in and pull id from session
 	def show() {
 		User user = userService.lookup(params.id)
-		
+
 		if(user){
-			render new SingleResponse(user) as JSON
+			render new SingleResponse(user, "Showing profile for $user") as JSON
 		}else{
-			render new FailureResponse("User not found") as JSON			
+			render new FailureResponse("User not found") as JSON
 		}
 	}
 
-	def edit() {
+	// :TODO if role is admin, allow to update any property, otherwise, must be logged in and pull id from session.  And then can only delete some properties.
+	def save() {
 		User user = userService.lookup(params.id)
+		
 		if (!user) {
-			redirect(action: "list")
-			return
-		}
-
-		[user: user]
-	}
-
-	def update() {
-		User user = userService.lookup(params.id)
-		if (!user) {
-			redirect(action: "list")
+			render new FailureResponse("User not found") as JSON
 			return
 		}
 
 		user.properties = params
-		
+
 		if (!userService.save(user)) {
-			render(view: "edit", model: [user: user])
-			return
+			// :TODO pull validation messages from user object
+			render new FailureResponse("Unable to save profile")
 		}
 
-		flash.message = message(code: 'default.updated.message', args: [
-			message(code: 'user.label', default: 'User'),
-			user.id
-		])
-		redirect(action: "show", id: user.id)
+		render new SingleResponse(user, "Saved profile for $user") as JSON
 	}
 
+	// :TODO if role is admin, allow to delete a user, otherwise, must be logged in and pull id from session
 	def delete() {
 		User user = userService.lookup(params.id)
+		
 		if (!user) {
-			redirect(action: "list")
+			render new FailureResponse("User not found") as JSON
 			return
 		}
 
 		if(userService.delete(user)){
-			redirect(action: "list")
+			render new SingleResponse(null, "Successfully deleted profile of $user") as JSON
 		}else{
-			redirect(action: "show", id: params.id)
+			render new FailureResponse("Unable to delete profile")
 		}
 	}
 }
