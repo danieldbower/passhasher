@@ -11,9 +11,17 @@ class UserController {
 	UserService userService
 
 	/**
+	 * Give a hint for the index action ("show")
+	 */
+    def index() {
+        redirect(action: "show", params: params)
+    }
+
+	/**
 	 * Get a list of users in the system
 	 */
 	// :TODO Only admin can run this method
+	// :TODO url user/
 	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
@@ -24,6 +32,7 @@ class UserController {
 	 * Display the attributes of a single user
 	 */
 	// :TODO if role is admin, allow to lookup by id, otherwise, must be logged in and pull id from session
+	// :TODO url user/id as get
 	def show() {
 		User user = userService.lookup(params.id)
 
@@ -34,7 +43,19 @@ class UserController {
 		}
 	}
 
+	/**
+	 * Create a new user and fill with defaults - not persisted
+	 */
+	// :TODO url user/create
+	// :TODO if role is admin, allow, otherwise, disallow, unless user is anonymous and creating a profile
+	def create() {
+		User user = new User(params)
+		
+		render new SingleResponse(user, "New Profile with default values") as JSON		
+	}
+	
 	// :TODO if role is admin, allow to update any property, otherwise, must be logged in and pull id from session.  And then can only delete some properties.
+	// :TODO url user/id as post
 	def save() {
 		User user = userService.lookup(params.id)
 		
@@ -54,6 +75,7 @@ class UserController {
 	}
 
 	// :TODO if role is admin, allow to delete a user, otherwise, must be logged in and pull id from session
+	// :TODO url user/id as delete
 	def delete() {
 		User user = userService.lookup(params.id)
 		
