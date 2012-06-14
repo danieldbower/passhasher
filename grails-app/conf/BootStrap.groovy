@@ -9,16 +9,16 @@ import com.bowerstudios.passhasher.json.SingleResponse
 class BootStrap {
 
     def init = { servletContext ->
-		User user1 = new User(name:"daniel")
+		User user1 = new User(name:"daniel", username:"daniel", password:"daniel")
 		user1.save();
 		
-		User user2 = new User(name:"ariel")
+		User user2 = new User(name:"ariel", username:"ariel", password:"ariel")
 		user2.save();
 		
-		User user3 = new User(name:"david")
+		User user3 = new User(name:"david", username:"david", password:"david")
 		user3.save();
 		
-		User user4 = new User(name:"samuel")
+		User user4 = new User(name:"samuel", username:"samuel", password:"samuel")
 		user4.save();
 		
 		registerMarshallers()

@@ -41,5 +41,7 @@ grails.project.dependency.resolution = {
         runtime ":resources:1.1.5"
 
         build ":tomcat:$grailsVersion"
+		
+		//build ":spring-security-core:1.2.7.3"  // doesn't seem to work - had to use install-plugin instead
     }
 }
