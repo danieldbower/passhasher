@@ -2,6 +2,7 @@
   <h1>Todo List</h1>
   <h2>Definite</h2>
   <ol>
+    <li>Javascript framework for creating forms, lists, etc</li>
     <li>Places should be sorted naturally by name</li>
     <li>Authentication</li>
     <li>Auto Reset after a timeout value</li>
@@ -13,6 +14,7 @@
   </ol>
   <h2>Maybe</h2>
   <ul>
+    <li>CoffeeScript</li>
     <li>NoSql</li>
     <li>Choose hash type</li>
     <li>Option needed to create local version - does not support adding new places - perhaps zip up a version without "add place button"</li>
