@@ -17,7 +17,7 @@ class PlaceController {
 	PlaceService placeService
 	
 	/**
-	 * Give a hint for the index action ("show")
+	 * Give a hint for the index action ("list")
 	 */
     def index() {
         redirect(action: "list", params: params)

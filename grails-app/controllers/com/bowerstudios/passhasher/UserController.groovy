@@ -18,10 +18,10 @@ class UserController {
     }
 
 	/**
-	 * Get a list of users in the system
+	 * List users in the system
 	 */
-	// :TODO Only admin can run this method
 	// :TODO url user/
+	// :TODO Only admin can run this method
 	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
@@ -29,7 +29,7 @@ class UserController {
 	}
 
 	/**
-	 * Display the attributes of a single user
+	 * Display the attributes of a single User
 	 */
 	// :TODO if role is admin, allow to lookup by id, otherwise, must be logged in and pull id from session
 	// :TODO url user/id as get
