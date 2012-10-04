@@ -1,14 +1,14 @@
 package com.bowerstudios.passhasher
 
 import grails.converters.JSON
-
-import org.springframework.dao.DataIntegrityViolationException
+import grails.plugins.springsecurity.Secured
 
 import com.bowerstudios.passhasher.json.FailureResponse
 import com.bowerstudios.passhasher.json.PagedResponse
 import com.bowerstudios.passhasher.json.SingleResponse
 
 
+@Secured(['ROLE_PASSHASHER'])
 class PlaceController {
 
     static allowedMethods = [save: "POST", delete: "POST"]
