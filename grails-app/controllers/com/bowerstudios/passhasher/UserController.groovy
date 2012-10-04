@@ -2,6 +2,9 @@ package com.bowerstudios.passhasher
 
 import grails.converters.JSON
 import grails.plugins.springsecurity.Secured
+import grails.plugins.springsecurity.SpringSecurityService
+
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 import com.bowerstudios.passhasher.json.*
 
@@ -11,6 +14,7 @@ class UserController {
 	static allowedMethods = [save: "POST", delete: "POST"]
 
 	UserService userService
+	SpringSecurityService springSecurityService
 
 	/**
 	 * Give a hint for the index action ("show")
@@ -23,7 +27,8 @@ class UserController {
 	 * List users in the system
 	 */
 	// :TODO url user/
-	// :TODO Only admin can run this method
+	// Only admin can run this method
+	@Secured(['ROLE_PASSHASHER_ADMIN'])
 	def list() {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 
@@ -33,11 +38,17 @@ class UserController {
 	/**
 	 * Display the attributes of a single User
 	 */
-	// :TODO if role is admin, allow to lookup by id, otherwise, must be logged in and pull id from session
-	// :TODO url user/id as get
+	// if role is admin, allow to lookup by id, otherwise, must be logged in and pull id from session
+	// url user/id as get
 	def show() {
-		User user = userService.lookup(params.id)
-
+		User user 
+		
+		if(SpringSecurityUtils.ifAnyGranted('ROLE_PASSHASHER_ADMIN')){
+			user = userService.lookup(params.id)
+		}else{
+			user = springSecurityService.getCurrentUser()
+		}
+		
 		if(user){
 			render new SingleResponse(user, "Showing profile for $user") as JSON
 		}else{
@@ -50,6 +61,7 @@ class UserController {
 	 */
 	// :TODO url user/create
 	// :TODO if role is admin, allow, otherwise, disallow, unless user is anonymous and creating a profile
+	@Secured(['ROLE_PASSHASHER_ADMIN'])
 	def create() {
 		User user = new User(params)
 		
@@ -58,6 +70,7 @@ class UserController {
 	
 	// :TODO if role is admin, allow to update any property, otherwise, must be logged in and pull id from session.  And then can only delete some properties.
 	// :TODO url user/id as post
+	@Secured(['ROLE_PASSHASHER_ADMIN'])
 	def save() {
 		User user = userService.lookup(params.id)
 		
@@ -78,6 +91,7 @@ class UserController {
 
 	// :TODO if role is admin, allow to delete a user, otherwise, must be logged in and pull id from session
 	// :TODO url user/id as delete
+	@Secured(['ROLE_PASSHASHER_ADMIN'])
 	def delete() {
 		User user = userService.lookup(params.id)
 		
