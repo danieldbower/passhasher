@@ -7,7 +7,7 @@ class UrlMappings {
 			}
 		}
 
-		"/$id?"(controller:"user", action:"show")
+		"/"(controller:"home")
 		"500"(view:'/error')
 	}
 }
