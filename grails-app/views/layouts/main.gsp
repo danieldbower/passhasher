@@ -29,6 +29,15 @@
 <body>
 	<div class="header">
 		<g:render template="/shared/notices" />
+		<p align="right">
+			<sec:ifLoggedIn>
+				Welcome Back ${userInstance.name}!
+				<g:link controller='logout'>Logout</g:link>
+			</sec:ifLoggedIn>
+			<sec:ifNotLoggedIn>
+				<g:link controller='login' action='auth'>Login</g:link>
+			</sec:ifNotLoggedIn>
+		</p>
 	</div>
 	<div class="content">
 		<div id="tabs">
