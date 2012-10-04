@@ -7,8 +7,7 @@ class UrlMappings {
 			}
 		}
 
-		"/"(controller:"user", action:"passhasher")
-		"/$id?"(controller:"user", action:"passhasher")
+		"/$id?"(controller:"user", action:"show")
 		"500"(view:'/error')
 	}
 }
