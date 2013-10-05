@@ -14,11 +14,17 @@ class BootStrap {
 		Role appRole = new Role(authority:"ROLE_PASSHASHER")
 		appRole.save()
 		
+		Role adminRole = new Role(authority:"ROLE_PASSHASHER_ADMIN")
+		adminRole.save()
+		
 		User user1 = new User(name:"Daniel", username:"daniel", password:"daniel", 
 			enabled:true, accountExpired:false, accountLocked:false, passwordExpired:false)
 		user1.save()
 		UserRole user1Role = new UserRole(user:user1, role:appRole)
 		user1Role.save()
+		
+		UserRole user1AdminRole = new UserRole(user:user1, role:adminRole)
+		user1AdminRole.save()
 		
 		User user2 = new User(name:"Ariel", username:"ariel", password:"ariel", 
 			enabled:true, accountExpired:false, accountLocked:false, passwordExpired:false)
