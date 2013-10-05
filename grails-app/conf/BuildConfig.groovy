@@ -37,11 +37,13 @@ grails.project.dependency.resolution = {
 
     plugins {
         runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.7.1"
-        runtime ":resources:1.1.5"
+		runtime ":jquery:1.10.2",":jquery-ui:1.8.24"
+        runtime ":resources:1.2.1"
 
         build ":tomcat:$grailsVersion"
 		
-		//build ":spring-security-core:1.2.7.3"  // doesn't seem to work - had to use install-plugin instead
+		compile ':spring-security-core:1.2.7.3', ":spring-security-appinfo:1.0"
+		
+		runtime ":database-migration:1.3.6"
     }
 }
