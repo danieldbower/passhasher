@@ -31,7 +31,7 @@
 		<g:render template="/shared/notices" />
 		<p align="right">
 			<sec:ifLoggedIn>
-				Welcome Back ${userInstance.name}!
+				Welcome Back <sec:loggedInUserInfo field="username"/> !
 				<g:link controller='logout'>Logout</g:link>
 			</sec:ifLoggedIn>
 			<sec:ifNotLoggedIn>
