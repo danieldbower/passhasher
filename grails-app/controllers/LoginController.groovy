@@ -1,4 +1,5 @@
 import grails.converters.JSON
+import grails.plugins.springsecurity.Secured
 
 import javax.servlet.http.HttpServletResponse
 
@@ -11,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder as SCH
 import org.springframework.security.web.WebAttributes
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
+@Secured('permitAll')
 class LoginController {
 
 	/**

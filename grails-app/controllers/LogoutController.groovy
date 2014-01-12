@@ -1,5 +1,8 @@
+import grails.plugins.springsecurity.Secured
+
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
+@Secured('permitAll')
 class LogoutController {
 
 	/**
