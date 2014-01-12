@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext 
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="0.1.0" author="daniel.bower">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="place"/>
+			</not>
+		</preConditions>
+		
+		<comment>This changeset will set up the initial db, but only if it hasn't
+		already been previously setup.</comment>
+		
+		<sql>CREATE TABLE IF NOT EXISTS `user` (
+		  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+		  `version` bigint(20) NOT NULL,
+		  `date_created` datetime NOT NULL,
+		  `last_updated` datetime NOT NULL,
+		  `name` varchar(255) NOT NULL,
+		  PRIMARY KEY (`id`),
+		  UNIQUE KEY `name` (`name`)
+		) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;</sql>
+		
+		<sql>CREATE TABLE IF NOT EXISTS `place` (
+		  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+		  `version` bigint(20) NOT NULL,
+		  `date_created` datetime NOT NULL,
+		  `description` varchar(255) NOT NULL,
+		  `encoding_chars` varchar(255) NOT NULL,
+		  `hash_times` int(11) NOT NULL,
+		  `last_updated` datetime NOT NULL,
+		  `name` varchar(255) NOT NULL,
+		  `pass_length` int(11) NOT NULL,
+		  `user_id` bigint(20) NOT NULL,
+		  PRIMARY KEY (`id`),
+		  UNIQUE KEY `name` (`name`),
+		  KEY `FK65CD9078CFF8201` (`user_id`)
+		) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=133 ;</sql>
+		
+	</changeSet>
+
+	<changeSet id="0.2.1" author="daniel.bower">
+		<createTable tableName="role">
+			<column name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="version" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="authority" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="0.2.2" author="daniel.bower">
+		<addColumn tableName="user">
+			<column name="username" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="password" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="enabled" type="boolean" defaultValueBoolean="true"/>
+			<column name="account_expired" type="boolean" defaultValueBoolean="true"/>
+			<column name="account_locked" type="boolean" defaultValueBoolean="true"/>
+			<column name="password_expired" type="boolean" defaultValueBoolean="true"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="daniel.bower" id="0.2.3">
+		<createTable tableName="user_role">
+			<column name="role_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<addPrimaryKey columnNames="role_id, user_id" constraintName="user_rolePK" tableName="user_role"/>
+	</changeSet>
+	
+	<changeSet author="daniel.bower" id="0.2.4">
+		<comment>Add application roles</comment>
+		<insert tableName="role">
+			<column name="id" valueNumeric="1"/>
+			<column name="authority" value="ROLE_PASSHASHER_ADMIN"/>
+			<column name="version" valueNumeric="0"/>
+		</insert>
+		<insert tableName="role">
+			<column name="id" valueNumeric="2"/>
+			<column name="authority" value="ROLE_PASSHASHER"/>
+			<column name="version" valueNumeric="0"/>
+		</insert>
+	</changeSet>
+
+	<changeSet author="daniel.bower" id="0.2.5">
+		<comment>Assign existing users to basic role</comment>
+		<sql>insert into user_role(role_id, user_id) select 2, id from user</sql>
+	</changeSet>
+	
+	
+</databaseChangeLog>

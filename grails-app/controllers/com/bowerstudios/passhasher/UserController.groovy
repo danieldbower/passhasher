@@ -8,7 +8,7 @@ import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 import com.bowerstudios.passhasher.json.*
 
-@Secured(['ROLE_PASSHASHER'])
+@Secured(['ROLE_PASSHASHER','ROLE_PASSHASHER_ADMIN'])
 class UserController {
 
 	static allowedMethods = [save: "POST", delete: "POST"]

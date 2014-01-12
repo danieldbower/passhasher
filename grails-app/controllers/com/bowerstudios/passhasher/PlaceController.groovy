@@ -8,7 +8,7 @@ import com.bowerstudios.passhasher.json.PagedResponse
 import com.bowerstudios.passhasher.json.SingleResponse
 
 
-@Secured(['ROLE_PASSHASHER'])
+@Secured(['ROLE_PASSHASHER', 'ROLE_PASSHASHER_ADMIN'])
 class PlaceController {
 
     static allowedMethods = [save: "POST", delete: "POST"]

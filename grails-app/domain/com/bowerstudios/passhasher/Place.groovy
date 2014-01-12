@@ -7,7 +7,6 @@ class Place {
 	public static final int DEFAULT_PASS_LENGTH = 8
 
 	String name
-	String username
 	String description
 
 	int hashTimes
@@ -39,7 +38,6 @@ class Place {
 	
 	static jsonProperties = { Place place ->
 		['name': place.name, 
-			'username': place.username,
 			'description': place.description,
 			'hashTimes':place.hashTimes, 
 			'encodingChars':place.encodingChars,

@@ -3,12 +3,12 @@
 
 grails.config.locations = ["file:/usr/local/etc/passhasher/passhasher-config.properties"]
 // 								"classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
+//									  "classpath:${appName}-config.groovy",
+//									  "file:${userHome}/.grails/${appName}-config.properties",
+//									  "file:${userHome}/.grails/${appName}-config.groovy"]
 
 // if (System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
+//	 grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
 
@@ -16,18 +16,18 @@ grails.project.groupId = com.bowerstudios // change this to alter the default pa
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
-                      xml: ['text/xml', 'application/xml'],
-                      text: 'text/plain',
-                      js: 'text/javascript',
-                      rss: 'application/rss+xml',
-                      atom: 'application/atom+xml',
-                      css: 'text/css',
-                      csv: 'text/csv',
-                      all: '*/*',
-                      json: ['application/json','text/json'],
-                      form: 'application/x-www-form-urlencoded',
-                      multipartForm: 'multipart/form-data'
-                    ]
+							 xml: ['text/xml', 'application/xml'],
+							 text: 'text/plain',
+							 js: 'text/javascript',
+							 rss: 'application/rss+xml',
+							 atom: 'application/atom+xml',
+							 css: 'text/css',
+							 csv: 'text/csv',
+							 all: '*/*',
+							 json: ['application/json','text/json'],
+							 form: 'application/x-www-form-urlencoded',
+							 multipartForm: 'multipart/form-data'
+						  ]
 
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
@@ -60,46 +60,62 @@ grails.exceptionresolver.params.exclude = ['password']
 // enable query caching by default
 grails.hibernate.cache.queries = true
 
+grails.plugin.databasemigration.changelogFileName = 'changelog.groovy'
+grails.plugin.databasemigration.updateOnStart = true
+grails.plugin.databasemigration.updateOnStartFileNames = ['changelog.groovy']
+grails.plugin.databasemigration.autoMigrateScripts = [ 'RunApp', 'TestApp']
+
 // set per-environment serverURL stem for creating absolute links
 environments {
-    development {
-        grails.logging.jul.usebridge = true
-    }
-    production {
-        grails.logging.jul.usebridge = false
-        grails.serverURL = "https://bowerstudios.com"
-    }
+	 development {
+		  grails.logging.jul.usebridge = true
+	 }
+	 production {
+		  grails.logging.jul.usebridge = false
+		  grails.serverURL = "https://bowerstudios.com"
+	 }
 }
 
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console
-    // appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+	 // Example of changing the log pattern for the default console
+	 // appender:
+	 //
+	 //appenders {
+	 //	 console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+	 //}
 	appenders {
 		
-        file name:'file', file:'/var/log/passhasher.log'
+		file name:'file', file:'/var/log/passhasher.log'
 		rollingFile name: "stacktrace", maxFileSize: 1024,
-					file: "/var/log/passhasher-stacktrace.log"
+			file: "/var/log/passhasher-stacktrace.log"
 	}
+	
 	root {
-		debug 'file'
+		debug 'com.bowerstudios', 'file'
+		debug 'grails.app', 'file'
 	}
 
-    error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
-           'org.codehaus.groovy.grails.web.pages', //  GSP
-           'org.codehaus.groovy.grails.web.sitemesh', //  layouts
-           'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping', // URL mapping
-           'org.codehaus.groovy.grails.commons', // core / classloading
-           'org.codehaus.groovy.grails.plugins', // plugins
-           'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
-           'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
+	error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
+			  'org.codehaus.groovy.grails.web.pages', //  GSP
+			  'org.codehaus.groovy.grails.web.sitemesh', //  layouts
+			  'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+			  'org.codehaus.groovy.grails.web.mapping', // URL mapping
+			  'org.codehaus.groovy.grails.commons', // core / classloading
+			  'org.codehaus.groovy.grails.plugins', // plugins
+			  'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
+			  'org.springframework',
+			  'org.hibernate',
+			  'net.sf.ehcache.hibernate',
+			  'grails.app.services.org.grails.plugin.resource',
+			  'grails.app.taglib.org.grails.plugin.resource',
+			  'grails.app.resourceMappers.org.grails.plugin.resource'
+
+			
+			info 'org.springframework.security.openid', 'org.openid4java'
+			//debug 'org.springframework.security'
+			//debug 'org.hibernate'
+			//debug 'grails.app.services.grails.plugin.mail', 'grails.plugin.mail', 'com.sun.mail'
 }
 
 // Added by the Spring Security Core plugin:
