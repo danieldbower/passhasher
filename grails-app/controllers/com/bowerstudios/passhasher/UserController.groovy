@@ -43,7 +43,7 @@ class UserController {
 	def show() {
 		User user 
 		
-		if(SpringSecurityUtils.ifAnyGranted('ROLE_PASSHASHER_ADMIN')){
+		if(SpringSecurityUtils.ifAnyGranted('ROLE_PASSHASHER_ADMIN') && params.id){
 			user = userService.lookup(params.id)
 		}else{
 			user = springSecurityService.getCurrentUser()

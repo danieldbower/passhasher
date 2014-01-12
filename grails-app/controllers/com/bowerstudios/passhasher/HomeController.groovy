@@ -20,6 +20,9 @@ class HomeController {
 			user = springSecurityService.getCurrentUser()
 		}
 		
-		[userInstance:user]
+		[userInstance:user, 
+			defaultHashTimes: Place.DEFAULT_HASH_TIMES, 
+			defaultPassLength: Place.DEFAULT_PASS_LENGTH, 
+			defaultEncodingChars: Place.DEFAULT_ENCODING_CHARS]
 	}
 }

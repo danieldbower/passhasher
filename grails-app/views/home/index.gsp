@@ -66,13 +66,14 @@
 
 		<p class="advanced anonymous">
 			<label for="hashTimesInput">Number of times to hash the value
-				- More times is arguably more secure, but takes longer</label> <input
-				type="text" id="hashTimesInput" value="${defaultHashTimes}" />
+				- More times is arguably more secure, but takes longer</label> 
+			<input type="text" id="hashTimesInput" value="${defaultHashTimes}" />
 		</p>
 
 		<p class="advanced anonymous">
 			<label for="passLengthInput">Length of the password to
-				generate</label> <input type="text" id="passLengthInput" value="${defaultPassLength}" />
+				generate</label> 
+			<input type="text" id="passLengthInput" value="${defaultPassLength}" />
 		</p>
 
 		<p class="advanced anonymous">
