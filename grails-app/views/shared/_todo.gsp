@@ -2,9 +2,7 @@
   <h1>Todo List</h1>
   <ul>
     <li>Create places form/table with Ajax calls to backend</li>
-    <li>Uses Sensible defaults for Advanced Features</li>
     <li>Notices/Alerts should fade out</li>
-    <li>Extract Database config out of source tree</li>
     <li>Make hash times a random number (close to 1000) before storing it.</li>
   	<li>Authenticate via db, then OpenId, Add Authorization to Controllers</li>
     <li>Javascript framework for creating forms, lists, etc</li>
@@ -14,7 +12,6 @@
     <li>Option needed to purge my profile</li>
     <li>Allow edit of places now that there is quite a lot of info there</li>
     <li>Stylize show/hide advanced columns with javascript slider</li>
-    <li>CoffeeScript</li>
     <li>Choose hash type</li>
     <li>Option needed to create local version - does not support adding new places - perhaps zip up a version without "add place button"</li>
     <li>Option to copy directly to System Clipboard - not supported by browsers through javascript.</li>
@@ -22,6 +19,8 @@
   <h2>Features Implemented</h2>
   <ul>
     <li>Allow user to store notes about a place</li>
+    <li>Uses Sensible defaults for Advanced Features</li>
+    <li>Extract Database config out of source tree</li>
   </ul>
   <h2>Javascript Features Implemented</h2>
   <ul>
