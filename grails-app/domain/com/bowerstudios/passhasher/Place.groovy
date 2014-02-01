@@ -5,14 +5,13 @@ import org.apache.commons.lang.math.RandomUtils;
 class Place {
 	public static final String DEFAULT_ENCODING_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
 	public static final int DEFAULT_PASS_LENGTH = 8
-	public static final int DEFAULT_HASH_TIMES = 512
 
 	String name
 	String description
 
-	int hashTimes
-	String encodingChars
-	int passLength
+	int hashTimes = defaultHashTimes()
+	String encodingChars = DEFAULT_ENCODING_CHARS
+	int passLength = DEFAULT_PASS_LENGTH
 
 	static belongsTo = [user: User]
 

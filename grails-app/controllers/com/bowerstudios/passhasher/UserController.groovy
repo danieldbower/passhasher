@@ -41,14 +41,8 @@ class UserController {
 	// if role is admin, allow to lookup by id, otherwise, must be logged in and pull id from session
 	// url user/id as get
 	def show() {
-		User user 
-		
-		if(SpringSecurityUtils.ifAnyGranted('ROLE_PASSHASHER_ADMIN') && params.id){
-			user = userService.lookup(params.id)
-		}else{
-			user = springSecurityService.getCurrentUser()
-		}
-		
+		User user = userService.effectiveUser(params.id)
+			
 		if(user){
 			render new SingleResponse(user, "Showing profile for $user") as JSON
 		}else{

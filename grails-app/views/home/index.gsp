@@ -15,8 +15,16 @@
 	<g:if test="${userInstance}">
 		<h2>
 			Places
-			<g:link action="edit" id="${userInstance.id}" class="ui-icon ui-icon-plusthick">add place</g:link>
 		</h2>
+			
+		<g:formRemote name="newPlaceForm" onSuccess="addNewPlaceToList"
+			url="[controller: 'place', action: 'create']">
+			<input type="text" name="name"/>
+			<input type="text" name="description"/>
+			<input type="text" name="passLength"/>
+			<input type="submit" value="Create Place" />
+		</g:formRemote >
+		
 		<table class="places">
 			<thead>
 				<tr>

@@ -56,3 +56,11 @@ function hideAdvanced() {
 	$(".advanced").hide()
 	$(".expandAdvanced").show()
 }
+
+function clearNewPlaceForm() {
+	
+}
+
+function addNewPlaceToList(e) {
+	
+}
