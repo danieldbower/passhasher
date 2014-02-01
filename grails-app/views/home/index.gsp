@@ -29,7 +29,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<g:each in="${userInstance.places}" var="place">
+				<g:each in="${sortedPlaces}" var="place">
 				<tr>
 					<td class="placeName"
 						onclick="hashit('${ place.name }', ${ place.hashTimes }, '${ place.encodingChars }', ${ place.passLength })">
