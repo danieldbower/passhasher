@@ -1,7 +1,7 @@
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
 
-grails.config.locations = ["file:/usr/local/etc/passhasher/passhasher-config.properties"]
+grails.config.locations = ["file:/usr/local/etc/passhasher/passhasher-config.groovy"]
 // 								"classpath:${appName}-config.properties",
 //									  "classpath:${appName}-config.groovy",
 //									  "file:${userHome}/.grails/${appName}-config.properties",
@@ -92,9 +92,11 @@ log4j = {
 	}
 	
 	root {
-		debug 'com.bowerstudios', 'file'
-		debug 'grails.app', 'file'
+		warn 'file'
 	}
+
+	debug 'com.bowerstudios'
+	debug 'grails.app'
 
 	error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
 			  'org.codehaus.groovy.grails.web.pages', //  GSP
