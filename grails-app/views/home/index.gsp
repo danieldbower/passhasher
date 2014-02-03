@@ -13,94 +13,35 @@
 	</div>
 
 	<g:if test="${userInstance}">
-		<h2>
-			Places
-		</h2>
-			
-		<g:formRemote name="newPlaceForm" onSuccess="addNewPlaceToList"
-			url="[controller: 'place', action: 'create']">
-			<input type="text" name="name"/>
-			<input type="text" name="description"/>
-			<input type="text" name="passLength"/>
-			<input type="submit" value="Create Place" />
-		</g:formRemote >
-		
-		<table class="places">
-			<thead>
-				<tr>
-					<th width="15%">Name</th>
-					<th>Notes</th>
-					<th class="advanced">Strength</th>
-					<th class="advanced">Length</th>
-					<th class="advanced">Allowed Characters</th>
-					<th width="5%" class="placeButtons">&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				<g:each in="${sortedPlaces}" var="place">
-				<tr>
-					<td class="placeName"
-						onclick="hashit('${ place.name }', ${ place.hashTimes }, '${ place.encodingChars }', ${ place.passLength })">
-						${place.name}
-					</td>
-					<td class="placeDesc">
-						${ place.description }
-					</td>
-					<td class="placeHashTimes advanced">
-						${ place.hashTimes }
-					</td>
-					<td class="placePassLength advanced">
-						${ place.passLength }
-					</td>
-					<td class="placeEncodingChars advanced">
-						${ place.encodingChars }
-					</td>
-				</tr>
-				</g:each>
-			</tbody>
-		</table>
+		<g:render template="/shared/placeList"/>
 
-		<div class="buttons">
+		<g:form name="newPlaceForm">
+			<h2>Create New</h2>
+			<g:render template="/shared/placeFormFields" />
+			<g:submitToRemote value="Create Place" 
+				onSuccess="addNewPlaceToList(data)" onFailure="addNewPlaceFailure(data)"
+				url="[controller: 'place', action: 'create']"/>
+			<button onclick="hashit($('#nameInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val(), $('#passLengthInput').val())">hash it</button>
+		</g:form >
 	</g:if>
-	<g:else>
 
+	<g:else>
 		<p class="anonymous">Either sign in (at the top right) to access
 			your saved list of places,
 		<div class="OR">or</div>
-		<label for="placeInput">Enter a place</label>
-		<input type="text" id="placeInput"
-			value="ex: facebook or http://facebook.com" size="36" />
-		</p>
-
-		<p class="advanced anonymous">
-			<label for="hashTimesInput">Number of times to hash the value
-				- More times is arguably more secure, but takes longer</label> 
-			<input type="text" id="hashTimesInput" value="${defaultHashTimes}" />
-		</p>
-
-		<p class="advanced anonymous">
-			<label for="passLengthInput">Length of the password to
-				generate</label> 
-			<input type="text" id="passLengthInput" value="${defaultPassLength}" />
-		</p>
-
-		<p class="advanced anonymous">
-			<label for="encodingInput">The characters that may be used in
-				the output</label> <input type="text" id="encodingInput"
-				value="${defaultEncodingChars}" />
-		</p>
-
-		<div class="buttons">
-			<button
-				onclick="hashit($('#placeInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val(), $('#passLengthInput').val())">hash
-				it</button>
+		<g:render template="/shared/placeFormFields"/>
 	</g:else>
-	<button title="reset form" onclick="resetHasher('blank')" class="reset">reset</button>
-
-	<button title="hide advanced" onclick="hideAdvanced()"
-		class="makeAdvancedToggle advanced">simple</button>
-	<button title="show advanced" onclick="showAdvanced()"
-		class="makeAdvancedToggle expandAdvanced">advanced</button>
+	
+	<div class="buttons">
+		<g:if test="${!userInstance}">
+			<button onclick="hashit($('#nameInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val(), $('#passLengthInput').val())">hash it</button>
+		</g:if>
+		<button title="reset form" onclick="resetHasher('blank')"
+			class="reset">reset</button>
+		<button title="hide advanced" onclick="hideAdvanced()"
+			class="makeAdvancedToggle advanced">simple</button>
+		<button title="show advanced" onclick="showAdvanced()"
+			class="makeAdvancedToggle expandAdvanced">advanced</button>
 	</div>
 
 

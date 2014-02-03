@@ -45,6 +45,7 @@ function hashit(placename, times, encodingChars, lengthLimit) {
 function resetHasher(val) {
 	$("#hashedPass").text(val)
 	$("#master").val("")
+	clearNewPlaceForm()
 }
 
 function showAdvanced() {
@@ -58,9 +59,14 @@ function hideAdvanced() {
 }
 
 function clearNewPlaceForm() {
-	
+	$(':input','.formField').not(':button, :submit, :reset, :hidden').val('')
 }
 
-function addNewPlaceToList(e) {
-	
+function addNewPlaceToList(data) {
+	clearNewPlaceForm()
+	//
+}
+
+function addNewPlaceFailure(data) {
+	console.debug(data)
 }
