@@ -1,9 +1,10 @@
 <div class="todo">
   <h1>Todo List</h1>
   <ul>
+    <li>Create places form/table with Ajax calls to backend</li>
+    <li>Filter Places</li>
     <li>Allow edit of places now that there is quite a lot of info there</li>
     <li>Authenticate via db, then OpenId, Add Authorization to Controllers</li>
-    <li>Create places form/table with Ajax calls to backend</li>
     <li>Javascript framework for creating forms, lists, etc</li>
     <li>Places should be sorted naturally by name - client side</li>
     <li>Auto Reset after a timeout value</li>

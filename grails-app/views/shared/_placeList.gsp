@@ -1,5 +1,11 @@
 <h2>Places</h2>
 
+<div class="placesFilter">
+	<h3>Filter</h3>
+	<input type="text" id="placesFilter" />
+	<button>Remove Filter</button>
+</div>
+
 <table class="places">
 	<thead>
 		<tr>
@@ -34,3 +40,12 @@
 		</g:each>
 	</tbody>
 </table>
+
+<g:form name="newPlaceForm">
+	<h2>Create New</h2>
+	<g:render template="/shared/placeFormFields" />
+	<g:submitToRemote value="Create Place" 
+		onSuccess="addNewPlaceToList(data)" onFailure="addNewPlaceFailure(data)"
+		url="[controller: 'place', action: 'create']"/>
+	<button onclick="hashit($('#nameInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val(), $('#passLengthInput').val())">hash it</button>
+</g:form >

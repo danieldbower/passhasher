@@ -42,6 +42,7 @@ function hashit(placename, times, encodingChars, lengthLimit) {
 	// give focus to field and highlight text?
 }
 
+//Reset all input fields
 function resetHasher(val) {
 	$("#hashedPass").text(val)
 	$("#master").val("")
@@ -58,15 +59,31 @@ function hideAdvanced() {
 	$(".expandAdvanced").show()
 }
 
+//Resets new place form
 function clearNewPlaceForm() {
 	$(':input','.formField').not(':button, :submit, :reset, :hidden').val('')
 }
 
+//success function when we add a new place
 function addNewPlaceToList(data) {
 	clearNewPlaceForm()
-	//
+
+	/*   starting from http://jsfiddle.net/Dq37V/
+	var arr = [];
+	arr.push(row.id);
+
+	$("#places tr").each(function(){
+		arr.push(this.id);
+	});
+	*/
 }
 
+//displays an error message when we fail to add a new place via ajax
 function addNewPlaceFailure(data) {
-	console.debug(data)
+	
+}
+
+//Occurs on typing in the placesFilter
+function filterPlaces(){
+	// starting from http://api.jquery.com/filter/
 }
