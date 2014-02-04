@@ -23,7 +23,7 @@
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 <g:layoutHead />
-<r:require modules="jquery, jquery-ui, hash, passwordStrengthMeter" />
+<r:require modules="jquery, jquery-ui, hash, passwordStrengthMeter, datatables" />
 <r:layoutResources />
 </head>
 <body>

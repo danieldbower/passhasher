@@ -1,9 +1,15 @@
 if (typeof jQuery !== 'undefined') {
 	(function($) {
-		$("#tabs").tabs()
+		$("#tabs").tabs();
+
 		$('.notices').fadeOut(7000);
-		hideAdvanced()
+
+		hideAdvanced();
+
+		$('#places').dataTable();
+
 		$('#master').passwordStrength();
+
 		$('#spinner').ajaxStart(function() {
 			$(this).fadeIn();
 		}).ajaxStop(function() {
@@ -11,6 +17,9 @@ if (typeof jQuery !== 'undefined') {
 		});
 	})(jQuery);
 }
+
+$(document).ready(function() {
+} );
 
 function hashit(placename, times, encodingChars, lengthLimit) {
 	// pull the master password and the place
@@ -81,9 +90,4 @@ function addNewPlaceToList(data) {
 //displays an error message when we fail to add a new place via ajax
 function addNewPlaceFailure(data) {
 	
-}
-
-//Occurs on typing in the placesFilter
-function filterPlaces(){
-	// starting from http://api.jquery.com/filter/
 }

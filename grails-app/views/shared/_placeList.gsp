@@ -1,12 +1,6 @@
 <h2>Places</h2>
 
-<div class="placesFilter">
-	<h3>Filter</h3>
-	<input type="text" id="placesFilter" />
-	<button>Remove Filter</button>
-</div>
-
-<table class="places">
+<table class="display" id="places">
 	<thead>
 		<tr>
 			<th width="15%">Name</th>
@@ -14,7 +8,6 @@
 			<th class="advanced">Strength</th>
 			<th class="advanced">Length</th>
 			<th class="advanced">Allowed Characters</th>
-			<th width="5%" class="placeButtons">&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody>
