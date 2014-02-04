@@ -4,10 +4,12 @@
 		value="ex: facebook or http://facebook.com" size="36" />
 </div>
 
-<div class="formField">
-	<label for="descriptionInput">Description</label>
-	<textarea name="description" id="desccriptionInput">ex: Description of place and possibly username</textarea> 
-</div>
+<g:if test="${userInstance}">
+	<div class="formField">
+		<label for="descriptionInput">Description</label>
+		<textarea name="description" id="desccriptionInput">ex: Description of place and possibly username</textarea> 
+	</div>
+</g:if>
 
 <div class="formField advanced">
 	<label for="passLengthInput">Length of the password to generate</label> 
