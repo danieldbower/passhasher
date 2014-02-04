@@ -79,7 +79,7 @@ class PlaceController {
 			render new FailureResponse("Failed to persist place") as JSON
 		}
 		
-		render new SingleResponse(place, "New Profile with default values") as JSON
+		render new SingleResponse(place, "New Place with default values") as JSON
 	}
 
 	// :TODO url user/userId/place/id as post
@@ -106,7 +106,7 @@ class PlaceController {
 			return
 		}
 
-		render new SingleResponse(place, "Saved profile for $place") as JSON
+		render new SingleResponse(place, "Saved place: $place") as JSON
 	}
 	
 	// :TODO url user/userId/place/id as delete
