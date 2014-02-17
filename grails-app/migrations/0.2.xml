@@ -104,5 +104,30 @@
 		<sql>insert into user_role(role_id, user_id) select 2, id from user</sql>
 	</changeSet>
 	
-	
+	<changeSet author="daniel.bower" id="0.2.6">
+		<createTable tableName="open_id">
+			<column autoIncrement="true" name="id" type="bigint">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="open_idPK"/>
+			</column>
+			<column name="version" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			<column name="url" type="varchar(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<createIndex indexName="open_id_fk_idx" tableName="open_id">
+			<column name="user_id"/>
+		</createIndex>
+		<createIndex indexName="open_id_url_uniq" tableName="open_id" unique="true">
+			<column name="url"/>
+		</createIndex>
+		<addForeignKeyConstraint baseColumnNames="user_id" baseTableName="open_id" 
+			constraintName="FKB4B52F308CFF8201" deferrable="false" 
+			initiallyDeferred="false" referencedColumnNames="id" 
+			referencedTableName="user" referencesUniqueColumn="false"/>
+	</changeSet>
 </databaseChangeLog>

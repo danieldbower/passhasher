@@ -15,14 +15,14 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
-	static hasMany = [places: Place]
+	static hasMany = [places: Place, openIds: OpenId]
 	
 	static constraints = {
 		name blank: false, unique: true
 		username blank: false, unique: true
 		password blank: false
 	}
-
+	
 	static mapping = {
 		sort "name"
 		password column: '`password`'

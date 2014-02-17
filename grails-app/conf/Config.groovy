@@ -125,3 +125,4 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.bowerstudios
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.bowerstudios.passhasher.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.bowerstudios.passhasher.Role'
 grails.plugins.springsecurity.rejectIfNoRule = true
+grails.plugins.springsecurity.openid.domainClass = 'com.bowerstudios.passhasher.OpenId'
