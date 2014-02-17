@@ -1,3 +1,4 @@
+package com.bowerstudios.passhasher
 import grails.converters.JSON
 import grails.plugins.springsecurity.Secured
 

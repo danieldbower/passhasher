@@ -1,3 +1,4 @@
+package com.bowerstudios.passhasher
 import grails.plugins.springsecurity.Secured
 
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
