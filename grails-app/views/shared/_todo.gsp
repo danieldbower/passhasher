@@ -2,7 +2,6 @@
   <h1>Todo List</h1>
   <ul>
     <li>Allow edit of places now that there is quite a lot of info there</li>
-    <li>Authenticate via db, then OpenId, Add Authorization to Controllers</li>
     <li>Javascript framework for creating forms, lists, etc</li>
     <li>Auto Reset after a timeout value</li>
     <li>Notices/Alerts should fade out</li>
@@ -19,6 +18,7 @@
     <li>Extract Database config out of source tree</li>
     <li>Make hash times a random number (close to 1000) before storing it.</li>
     <li>Places should be sorted naturally by name - server side</li>
+    <li>Authenticate via db, then OpenId, Add Authorization to Controllers</li>
   </ul>
   <h1>Javascript Features Implemented</h1>
   <ul>

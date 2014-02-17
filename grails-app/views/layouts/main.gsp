@@ -40,23 +40,7 @@
 		</p>
 	</div>
 	<div class="content">
-		<div id="tabs">
-			<ul>
-				<li><a href="#app">Get Started</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#features">Features and Todo</a></li>
-			</ul>
-			<div id="app">
-				<g:layoutBody />
-			</div>
-			<div id="about">
-				<g:render template="/shared/about" />
-			</div>
-
-			<div id="features">
-				<g:render template="/shared/todo" />
-			</div>
-		</div>
+		<g:layoutBody />
 	</div>
 	<!-- div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div -->
 	<div class="footer" role="contentinfo">

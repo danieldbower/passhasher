@@ -1,12 +1,13 @@
 if (typeof jQuery !== 'undefined') {
 	(function($) {
+		$('#places').dataTable();
+
 		$("#tabs").tabs();
+		$("#accordion").accordion();
 
 		$('.notices').fadeOut(7000);
 
 		hideAdvanced();
-
-		$('#places').dataTable();
 
 		$('#master').passwordStrength();
 
