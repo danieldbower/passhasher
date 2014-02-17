@@ -1,19 +1,17 @@
 package com.bowerstudios.passhasher
+import grails.plugins.springsecurity.Secured
+
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 import org.codehaus.groovy.grails.plugins.springsecurity.openid.OpenIdAuthenticationFailureHandler as OIAFH
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.web.savedrequest.DefaultSavedRequest
-
-import com.bowerstudios.passhasher.User
-import com.bowerstudios.passhasher.Role
-import com.bowerstudios.passhasher.UserRole
 
 /**
  * Manages associating OpenIDs with application users, both by creating a new local user
  * associated with an OpenID and also by associating a new OpenID to an existing account.
  */
+@Secured('permitAll')
 class OpenIdController {
 
 	/** Dependency injection for daoAuthenticationProvider. */
