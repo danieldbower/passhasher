@@ -124,5 +124,9 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.bowerstudios.passhasher.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.bowerstudios.passhasher.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.bowerstudios.passhasher.Role'
-grails.plugins.springsecurity.rejectIfNoRule = true
 grails.plugins.springsecurity.openid.domainClass = 'com.bowerstudios.passhasher.OpenId'
+
+grails.plugins.springsecurity.rejectIfNoRule = true
+
+grails.plugins.springsecurity.rememberMe.persistent = true
+grails.plugins.springsecurity.rememberMe.persistentToken.domainClassName = 'com.bowerstudios.passhasher.PersistentLogin'

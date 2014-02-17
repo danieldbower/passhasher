@@ -130,4 +130,22 @@
 			initiallyDeferred="false" referencedColumnNames="id" 
 			referencedTableName="user" referencesUniqueColumn="false"/>
 	</changeSet>
+	
+	<changeSet author="daniel.bower" id="0.2.7">
+		<createTable tableName="persistent_logins">
+            <column name="series" type="varchar(64)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="persistent_loPK"/>
+            </column>
+            <column name="last_used" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+	</changeSet>
+	
 </databaseChangeLog>
