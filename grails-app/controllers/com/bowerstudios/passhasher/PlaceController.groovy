@@ -1,7 +1,7 @@
 package com.bowerstudios.passhasher
 
 import grails.converters.JSON
-import grails.plugins.springsecurity.Secured
+import grails.plugin.springsecurity.annotation.Secured
 
 import com.bowerstudios.passhasher.json.FailureResponse
 import com.bowerstudios.passhasher.json.PagedResponse

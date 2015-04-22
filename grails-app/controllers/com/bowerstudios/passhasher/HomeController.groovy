@@ -1,9 +1,9 @@
 package com.bowerstudios.passhasher
 
-import grails.plugins.springsecurity.Secured
-import grails.plugins.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityService
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 import com.bowerstudios.compare.NaturalSort
 
@@ -26,5 +26,10 @@ class HomeController {
 			defaultPassLength: Place.DEFAULT_PASS_LENGTH, 
 			defaultEncodingChars: Place.DEFAULT_ENCODING_CHARS,
 			sortedPlaces: sortedPlaces]
+	}
+	
+	@Secured('permitAll')
+	def jqueryui(){
+		
 	}
 }

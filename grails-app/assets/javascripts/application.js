@@ -1,21 +1,33 @@
+// This is a manifest file that'll be compiled into application.js.
+//
+// Any JavaScript file within this directory can be referenced here using a relative path.
+//
+// You're free to add application-wide JavaScript to this file, but it's generally better 
+// to create separate JavaScript files as needed.
+//
+//= require jquery
+//= require_tree .
+//= require_self
+
+
 if (typeof jQuery !== 'undefined') {
 	(function($) {
-		$('#places').dataTable();
+		//$('#places').dataTable();
 
 		$("#tabs").tabs();
-		$("#accordion").accordion();
+		//$("#accordion").accordion();
 
-		$('.notices').fadeOut(7000);
+		//$('.notices').fadeOut(7000);
 
-		hideAdvanced();
+		//hideAdvanced();
 
-		$('#master').passwordStrength();
+		//$('#master').passwordStrength();
 
-		$('#spinner').ajaxStart(function() {
-			$(this).fadeIn();
-		}).ajaxStop(function() {
-			$(this).fadeOut();
-		});
+		//$('#spinner').ajaxStart(function() {
+		//	$(this).fadeIn();
+		//}).ajaxStop(function() {
+		//	$(this).fadeOut();
+		//});
 	})(jQuery);
 }
 
@@ -62,6 +74,7 @@ function showAdvanced() {
 	$(".advanced").show();
 
 	setAdvRowVisInPlacesTable(true);
+	//= require jquery-ui
 	
 	$(".expandAdvanced").hide();
 	

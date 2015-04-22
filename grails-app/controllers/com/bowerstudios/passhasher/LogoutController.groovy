@@ -1,7 +1,7 @@
 package com.bowerstudios.passhasher
-import grails.plugins.springsecurity.Secured
+import grails.plugin.springsecurity.annotation.Secured
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 @Secured('permitAll')
 class LogoutController {
