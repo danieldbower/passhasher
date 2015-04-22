@@ -12,22 +12,20 @@
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {
-		//$('#places').dataTable();
+		$('#places').dataTable();
 
-		$("#tabs").tabs();
-		//$("#accordion").accordion();
+		//$("#tabs").tabs();
+		$("#accordion").accordion();
 
-		//$('.notices').fadeOut(7000);
+		$('.notices').fadeOut(7000);
 
-		//hideAdvanced();
+		$('#master').passwordStrength();
 
-		//$('#master').passwordStrength();
-
-		//$('#spinner').ajaxStart(function() {
-		//	$(this).fadeIn();
-		//}).ajaxStop(function() {
-		//	$(this).fadeOut();
-		//});
+		$('#spinner').ajaxStart(function() {
+			$(this).fadeIn();
+		}).ajaxStop(function() {
+			$(this).fadeOut();
+		});
 	})(jQuery);
 }
 
@@ -68,29 +66,6 @@ function resetHasher(val) {
 	clearNewPlaceForm();
 }
 
-var advancedVisible = false
-
-function showAdvanced() {
-	$(".advanced").show();
-
-	setAdvRowVisInPlacesTable(true);
-	//= require jquery-ui
-	
-	$(".expandAdvanced").hide();
-	
-	advancedVisible = true;
-}
-
-function hideAdvanced() {
-	$(".advanced").hide();
-
-	setAdvRowVisInPlacesTable(false);
-
-	$(".expandAdvanced").show();
-	
-	advancedVisible = false;
-}
-
 function setAdvRowVisInPlacesTable(visibility){
 	var placesTable = $('#places').dataTable();
 	placesTable.fnSetColumnVis(2, visibility);
@@ -108,12 +83,6 @@ function addNewPlaceToList(data) {
 	clearNewPlaceForm();
 
 	$('#places').dataTable().fnAddData( [data.data.name, data.data.description, data.data.hashTimes, data.data.passLength, data.data.encodingChars ] );
-	
-	if(advancedVisible){
-		showAdvanced();
-	}else{
-		hideAdvanced();
-	}
 }
 
 //displays an error message when we fail to add a new place via ajax

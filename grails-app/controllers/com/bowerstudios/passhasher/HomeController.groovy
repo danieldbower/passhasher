@@ -17,7 +17,7 @@ class HomeController {
 		List sortedPlaces = []
 		
 		if(user){
-			sortedPlaces = user.places.sort(new NaturalSort())
+			sortedPlaces = user.places.sort(false, new NaturalSort())
 			log.debug("Current user $user accessing home page")
 		}
 		
@@ -28,8 +28,12 @@ class HomeController {
 			sortedPlaces: sortedPlaces]
 	}
 	
+	@Secured(['ROLE_PASSHASHER', 'ROLE_PASSHASHER_ADMIN'])
+	def createPlace(){ }
+	
 	@Secured('permitAll')
-	def jqueryui(){
-		
-	}
+	def about(){ }
+
+	@Secured('permitAll')
+	def todo(){ }
 }

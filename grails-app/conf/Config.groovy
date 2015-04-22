@@ -146,6 +146,3 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.bowerstudi
 grails.plugin.springsecurity.authority.className = 'com.bowerstudios.passhasher.Role'
 
 grails.plugin.springsecurity.rejectIfNoRule = true
-
-grails.plugin.springsecurity.rememberMe.persistent = true
-grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'com.bowerstudios.passhasher.PersistentLogin'

@@ -1,3 +1,9 @@
+<!doctype html>
+<html>
+<head>
+<meta name="layout" content="main" />
+</head>
+<body>
 <div class="todo">
   <h1>Todo List</h1>
   <ul>
@@ -33,3 +39,5 @@
     <li>Specify length limit of generated pass</li>
   </ul>
 </div>
+</body>
+</html>

@@ -1,3 +1,9 @@
+<!doctype html>
+<html>
+<head>
+<meta name="layout" content="main" />
+</head>
+<body>
 <div class="about">
   <h1>About Pass Hasher</h1>
   <h2>Inspiration From:</h2>
@@ -14,3 +20,5 @@
     <li>Grails</li>
   </ul>
 </div>
+</body>
+</html>

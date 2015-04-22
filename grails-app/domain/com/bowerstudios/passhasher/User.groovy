@@ -15,7 +15,7 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
-	static hasMany = [places: Place, openIds: OpenId]
+	static hasMany = [places: Place]
 	
 	static constraints = {
 		name blank: false, unique: true
