@@ -54,7 +54,9 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
 		
-		compile 'com.google.api-client:google-api-client:1.19.1'
+		compile('com.google.api-client:google-api-client:1.19.1'){
+			exclude 'com.google.guava:guava-jdk5' // Workaround to solve lib clash with Asset-pipeline plugin (java.lang.NoSuchMethodError: com.google.common.collect.Maps.immutableEnumMap during asset-precompile)
+		}
 		compile 'com.google.apis:google-api-services-oauth2:v2-rev84-1.19.1'
     }
 
@@ -65,7 +67,7 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.8'
-        compile ":asset-pipeline:2.1.5"
+        compile(":asset-pipeline:2.1.5")
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.8.1" // or ":hibernate:3.6.10.18"
