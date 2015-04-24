@@ -32,7 +32,7 @@ class LoginController {
 	/**
 	 * Default action; redirects to 'defaultTargetUrl' if logged in, /login/auth otherwise.
 	 */
-	def index = {
+	def index(){
 		if (springSecurityService.isLoggedIn()) {
 			redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
 		}
@@ -45,7 +45,7 @@ class LoginController {
 	/**
 	 * Show the login page.
 	 */
-	def auth = {
+	def auth(){
 
 		def config = SpringSecurityUtils.securityConfig
 
@@ -118,7 +118,7 @@ class LoginController {
 	/**
 	 * Show denied page.
 	 */
-	def denied = {
+	def denied(){
 		if (springSecurityService.isLoggedIn() &&
 				authenticationTrustResolver.isRememberMe(SCH.context?.authentication)) {
 			// have cookie but the page is guarded with IS_AUTHENTICATED_FULLY
@@ -129,7 +129,7 @@ class LoginController {
 	/**
 	 * Callback after a failed login. Redirects to the auth page with a warning message.
 	 */
-	def authfail = {
+	def authfail(){
 
 		def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
 		String msg = ''

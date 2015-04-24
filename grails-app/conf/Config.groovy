@@ -144,5 +144,5 @@ log4j.main = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.bowerstudios.passhasher.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.bowerstudios.passhasher.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.bowerstudios.passhasher.Role'
-
+grails.plugin.springsecurity.logout.afterLogoutUrl = '/logout/done'
 grails.plugin.springsecurity.rejectIfNoRule = true

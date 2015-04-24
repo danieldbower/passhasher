@@ -14,27 +14,22 @@
 		<asset:javascript src="application.js"/>
 		<g:layoutHead/>
 	</head>
-<body>
-	<div class="header">
-		<g:render template="/shared/notices" />
-		<p align="right">
-			<sec:ifLoggedIn>
-				Welcome Back <sec:loggedInUserInfo field="username"/> !
-				<g:link controller='logout'>Logout</g:link>
-			</sec:ifLoggedIn>
-			<sec:ifNotLoggedIn>
-				<g:link controller='login' action='auth'>Login</g:link>
-			</sec:ifNotLoggedIn>
-		</p>
-	</div>
-	<div class="content">
-		<g:layoutBody />
-	</div>
-	<!-- div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="Grails"/></a></div -->
-	<div class="footer" role="contentinfo">
-		Brought to you by <a href="http://bowerstudios.com">BowerStudios.com</a>
-	</div>
-	<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-	</div>
-</body>
+	<body>
+		<div class="header">
+			<g:render template="/shared/notices" />
+			<p align="right">
+				<sec:ifLoggedIn>
+					Welcome Back <sec:loggedInUserInfo field="username"/> !
+					<g:link controller='logout'>Logout</g:link>
+				</sec:ifLoggedIn>
+			</p>
+		</div>
+		<div class="content">
+			<g:layoutBody />
+		</div>
+		<div class="footer" role="contentinfo">
+			Brought to you by <a href="http://bowerstudios.com">BowerStudios.com</a>
+		</div>
+		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+	</body>
 </html>

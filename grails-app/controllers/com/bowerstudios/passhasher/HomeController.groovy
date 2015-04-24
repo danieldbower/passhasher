@@ -11,7 +11,7 @@ class HomeController {
 	
 	UserService userService
 
-	@Secured('permitAll')
+	@Secured(['ROLE_PASSHASHER', 'ROLE_PASSHASHER_ADMIN'])
 	def index() {
 		User user = userService.effectiveUser(params.userId)
 		List sortedPlaces = []
@@ -28,7 +28,6 @@ class HomeController {
 			sortedPlaces: sortedPlaces]
 	}
 	
-	@Secured(['ROLE_PASSHASHER', 'ROLE_PASSHASHER_ADMIN'])
 	def createPlace(){ }
 	
 	@Secured('permitAll')
