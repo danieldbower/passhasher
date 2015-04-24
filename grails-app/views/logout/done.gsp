@@ -4,7 +4,7 @@
 	<title>${grailsApplication.metadata['app.name']}</title>
 </head>
 <body>
-	<div id="loginForm" class="login-form">
+	<div>
 		<h2>
 			<g:if test='${flash.message}'>
 				<span>${flash.message}</span>

@@ -13,13 +13,9 @@
 			<label id="password-strength" for="master"></label>
 		</div>
 	
-		<div class="buttons">
-			<button onclick="hashit($('#nameInput').val(), $('#hashTimesInput').val(), $('#encodingInput').val(), $('#passLengthInput').val())">hash it</button>
+		<div id="hashedPassContainer">
 			<button title="reset form" onclick="resetHasher('blank')"
 				class="reset">reset</button>
-		</div>
-	
-		<div id="hashedPassContainer">
 			<span id="hashedPassLabel">Hashed Pass:</span> <span id="hashedPass">blank</span>
 		</div>
 	
@@ -27,11 +23,11 @@
 			<g:render template="/shared/placeList"/>
 		</g:if>
 	
+		<ul>
+			<li><g:link action="createPlace">Create New Place</g:link></li>
+			<li><g:link action="about">About</g:link></li>
+			<li><g:link action="todo">Features and Todo</g:link></li>
+		</ul>
 	</div>
-	<ul>
-		<li><g:link action="createPlace">Create New Place</g:link></li>
-		<li><g:link action="about">About</g:link></li>
-		<li><g:link action="todo">Features and Todo</g:link></li>
-	</ul>
 </body>
 </html>

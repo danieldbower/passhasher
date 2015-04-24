@@ -9,6 +9,7 @@ import com.bowerstudios.compare.NaturalSort
 
 class HomeController {
 	
+	PlaceService placeService
 	UserService userService
 
 	@Secured(['ROLE_PASSHASHER', 'ROLE_PASSHASHER_ADMIN'])
@@ -22,13 +23,40 @@ class HomeController {
 		}
 		
 		[userInstance:user, 
-			defaultHashTimes: Place.defaultHashTimes(), 
-			defaultPassLength: Place.DEFAULT_PASS_LENGTH, 
-			defaultEncodingChars: Place.DEFAULT_ENCODING_CHARS,
 			sortedPlaces: sortedPlaces]
 	}
 	
-	def createPlace(){ }
+	/**
+	 * Display a form for creating a new place
+	 * @return
+	 */
+	@Secured(['ROLE_PASSHASHER', 'ROLE_PASSHASHER_ADMIN'])
+	def createPlace(){
+		User user = userService.effectiveUser(params.userId)
+		
+		Place place = new Place(
+				name:'ex: facebook or http://facebook.com',
+				description:'ex: Description of place and possibly username')
+		
+		[userInstance:user, 
+			place:place]
+	}
+	
+	/**
+	 * Save a new place for the user
+	 */
+	@Secured(['ROLE_PASSHASHER', 'ROLE_PASSHASHER_ADMIN'])
+	def savePlace(){
+		User user = userService.effectiveUser(params.userId)
+		
+		Place place = new Place(params)
+		
+		if (!placeService.save(place, user, params.version)) {
+			render(view:'createPlace', model:[place:place])
+			return
+		}
+		redirect(action:"index")
+	}
 	
 	@Secured('permitAll')
 	def about(){ }

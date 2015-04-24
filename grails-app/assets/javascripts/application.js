@@ -11,12 +11,10 @@
 
 
 if (typeof jQuery !== 'undefined') {
-	(function($) {
-		$('#places').dataTable();
+	$(document).ready(function() {
 
-		//$("#tabs").tabs();
-		$("#accordion").accordion();
-
+		$('#places').DataTable();
+		
 		$('.notices').fadeOut(7000);
 
 		$('#master').passwordStrength();
@@ -26,7 +24,7 @@ if (typeof jQuery !== 'undefined') {
 		}).ajaxStop(function() {
 			$(this).fadeOut();
 		});
-	})(jQuery);
+	} );
 }
 
 function hashit(placename, times, encodingChars, lengthLimit) {
@@ -63,29 +61,4 @@ function hashit(placename, times, encodingChars, lengthLimit) {
 function resetHasher(val) {
 	$("#hashedPass").text(val);
 	$("#master").val("");
-	clearNewPlaceForm();
-}
-
-function setAdvRowVisInPlacesTable(visibility){
-	var placesTable = $('#places').dataTable();
-	placesTable.fnSetColumnVis(2, visibility);
-	placesTable.fnSetColumnVis(3, visibility);
-	placesTable.fnSetColumnVis(4, visibility);
-}
-
-//Resets new place form
-function clearNewPlaceForm() {
-	$(':input','.formField').not(':button, :submit, :reset, :hidden').val('');
-}
-
-//success function when we add a new place
-function addNewPlaceToList(data) {
-	clearNewPlaceForm();
-
-	$('#places').dataTable().fnAddData( [data.data.name, data.data.description, data.data.hashTimes, data.data.passLength, data.data.encodingChars ] );
-}
-
-//displays an error message when we fail to add a new place via ajax
-function addNewPlaceFailure(data) {
-	
 }

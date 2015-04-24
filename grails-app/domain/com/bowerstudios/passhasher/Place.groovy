@@ -20,6 +20,7 @@ class Place {
 
 	static constraints = {
 		name blank: false, unique: true
+		description blank: false
 		hashTimes min:25
 		encodingChars blank: false
 		passLength min:4

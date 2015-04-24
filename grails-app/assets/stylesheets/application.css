@@ -9,9 +9,6 @@
 *
 *= require main
 *= require mobile
-*= require jquery-ui
-*= require jquery-ui.structure
-*= require jquery-ui.theme
-*= require datatables/jquery.dataTables
+*= require jquery.dataTables
 *= require_self
 */

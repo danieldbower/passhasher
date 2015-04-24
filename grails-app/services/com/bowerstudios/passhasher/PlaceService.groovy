@@ -1,14 +1,10 @@
 package com.bowerstudios.passhasher
 
-import java.util.Map;
-
-import org.springframework.dao.DataIntegrityViolationException
-
 class PlaceService {
 
-	boolean save(Place place, Map params) {
-		if (params.version) {
-			def version = params.version.toLong()
+	boolean save(Place place, User user, String newVersion) {
+		if (newVersion) {
+			def version = newVersion.toLong()
 			if (place.version > version) {
 				place.errors.rejectValue("version", "default.optimistic.locking.failure",
 						[ message(code: 'place.label', default: 'Place')]
@@ -18,27 +14,11 @@ class PlaceService {
 			}
 		}
 		
-		return place.save(flush: true)
-	}
-	
-	Place lookup(String id){
-		if(id && id.isBigInteger()){
+		place.encodingChars = place.encodingChars ?: Place.DEFAULT_ENCODING_CHARS
+		place.passLength = place.passLength ?: Place.DEFAULT_PASS_LENGTH
+		place.hashTimes = place.hashTimes ?: Place.defaultHashTimes()
+		place.user = user
 		
-			Place place = Place.get(id)
-			
-			if (place) {
-				return place
-			}
-		}
-	}
-	
-	boolean delete(Place place){
-		try {
-			place.delete(flush: true)
-			return true
-		}
-		catch (DataIntegrityViolationException e) {
-			return false
-		}
+		return place.save()
 	}
 }
